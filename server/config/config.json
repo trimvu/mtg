@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "lyvyikib",
+    "password": "q7NdBgkzTicdzgyYdKrHSELm8kv3fs25",
+    "database": "lyvyikib",
+    "host": "isilo.db.elephantsql.com",
+    "dialect": "postgres"
+  }
+}
