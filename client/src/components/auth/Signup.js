@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { signUp } from '../../actions/index'
 import { useNavigate } from 'react-router-dom'
+import './Signin.css'
 
 const Signup = () => {
 
@@ -29,33 +30,40 @@ const Signup = () => {
   
     <div className="">
 
-      <div className="">
+      <div className="login-box">
 
             <h2>Sign Up</h2>
 
             <form onSubmit={handleSubmit} className="form">
 
-              <div className="">
+              <div className="user-box">
                 <input type="email" value={email} 
                 onChange={e=>setEmail(e.target.value)}
                 placeholder="enter email address" />
               </div>
 
-              <div className="">
+              <div className="user-box">
                 <input type="name" value={username} 
                 onChange={e=>setUsername(e.target.value)}
                 placeholder="enter name" />
               </div>
 
-              <div className="">
+              <div className="user-box">
                 <input type="password" value={password} 
                 onChange={e=>setPassword(e.target.value)}
                 placeholder="enter password" />
               </div>
 
-              <div className="">
-                <input type="submit" value="Sign Up" />
-              </div>
+              <a href="">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <div className="">
+                  <input type="submit" value="Sign Up" />
+                </div>
+              </a>
+              
 
           </form>
 
