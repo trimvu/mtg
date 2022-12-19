@@ -57,9 +57,14 @@ export const signIn = (formData, cb) => async dispatch => {
 
         let response = await axios.post('/login', formData)
 
+        console.log("action user login", response)
+
         dispatch({
             type: actionTypes.AUTH_USER,
-            data: response.data.token
+            data: response.data.token,
+            userID: response.data.userID,
+            email: response.data.email,
+            username: response.data.username
         })
 
         // invoke the callback function to navigate to a feature page
@@ -130,12 +135,34 @@ export const checkToken = () => async dispatch => {
 
 }
 
+export const lists = () => async dispatch => {
+
+    try{
+        // make an api call to /login
+
+        let response = await axios.get('/list')
+
+        console.log("action user login", response)
+
+        dispatch({
+            type: actionTypes.AUTH_USER,
+            // data: response.data.token,
+            // listID: response.data.listID
+        })
+
+        // // invoke the callback function to navigate to a feature page
+        // cb()
+
+        // localStorage.setItem('token', response.data.token)
+    }
+    catch(error){
+
+        dispatch({
+            type: actionTypes.ERROR,
+            data: error
+        })
+    }
+}
 
 
 
-
-// make api call to /register
-
-// return {
-//     type: actionTypes.AUTH_USER,
-// }

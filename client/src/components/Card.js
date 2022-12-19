@@ -1,10 +1,14 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import DisplayLists from './DisplayLists'
 
 
 const Card = () => {
 
   const [cardInfo, setCardInfo] = useState()
+  const [userList, setUserList] = useState()
+  const [quantity, setQuantity] = useState("")
 
   let {card} = useParams()
 
@@ -16,6 +20,18 @@ const Card = () => {
     // console.log(cardInfo);
 
   }
+
+  // const handleSubmit = async e => {
+  //   e.preventDefault();
+
+    
+  //   const addCard = await axios.post('/card', {
+  //     cardName : card,
+  //     addedPrice,
+  //     quantity,
+  //     currentPrice
+  //   })
+  // }
 
   useEffect(() => {
 
@@ -39,7 +55,13 @@ const Card = () => {
           </div>
         }
 
-        <button>Add to list</button>
+        <form>
+          <DisplayLists setUserList={setUserList} />
+          <label>How many would you like to add?<input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} /></label>
+          
+          <button>Add to list</button>
+          
+        </form>
     </>
   )
 }

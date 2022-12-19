@@ -97,9 +97,10 @@ router.post('/login', requireLogin, (req, res) => {
 
     // when they have logged successfully
     // req.user => set by passport when a user successfully logged in
+    
+    // console.log("user logging route: ", req.user)
 
-
-    res.json({token: token(req.user)})
+    res.json({token: token(req.user), userID: req.user.dataValues.id, username: req.user.dataValues.username})
     
 })
 
