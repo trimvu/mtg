@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 // import DisplayLists from './DisplayLists'
 import { useSelector } from 'react-redux'
+import ListIDFetch from './ListIDFetch'
 
 const List = () => {
 
@@ -11,36 +12,57 @@ const List = () => {
 //   const [quantity, setQuantity] = useState("")
 
   let {list} = useParams()
+//   console.log("list is: ", list)
 
-  const [cards, setCards] = useState([])
+//   const [cards, setCards] = useState([])
 
-  const listID = useSelector((state) => state.listID)
+//   const listID = useSelector((state) => state.listID)
+//   console.log("listID is: ", listID)
 
-  const viewListFetch = async() => {
+    // const [listID, setListID] = useState()
 
-    try {
-        const data = await axios.get(`/list/${list}`, {
-        // const data = await axios.get(`/list`, {
-            list
-        })
+//   const viewListFetch = async() => {
 
-        console.log(data)
+//     try {
+//         const data = await axios.post(`/getListID`, {
+//         // const data = await axios.get(`/list`, {
+//             list
+//         })
+
+//         // console.log("list fetch data: ", data)
+//         setListID(data.data[0].id)
+
+//         // viewListCardsFetch()
         
-    } catch (error) {
-        console.log(error)
-    }
-}
+//     } catch (error) {
+//         console.log(error)
+//     }
+//     }
 
-    // const viewListCardsFetch = async() => {
+    // const displayListCard = async() => {
+    //     try {
+    //         const data = await axios.get(`/list/`, {
+    //             headers: {
+    //                 "authorization": localStorage.token
+    //             }
+    //         })
+    //         console.log("the list data", data)
+    //         // setUsername(data.data[0].username)
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+
+    // const viewListCardsFetch = async(listID) => {
 
     //     try {
-    //         const data = await axios.get("/card", {
+    //         const data = await axios.post("/cardList", {
     //             listID
     //         })
 
-    //         console.log("list ID is ", listID)
+    //         // console.log("list ID is ", listID)
 
-    //         console.log(data)
+    //         console.log("list cards fetch ", data)
 
     //         setCards(data.data)
     //     } catch (error) {
@@ -61,12 +83,13 @@ const List = () => {
     //     }
     // })
 
-useEffect(() => {
+// useEffect(() => {
 
-    viewListFetch()
+    // viewListFetch()
     // viewListCardsFetch()
+    // displayListCard();
 
-}, [])
+// }, [])
 
   return (
     <>
@@ -102,6 +125,10 @@ useEffect(() => {
                         )
                     })
                 } */}
+
+                {/* <h1>ListID: {listID}</h1> */}
+
+        <ListIDFetch list={list} />
     </>
   )
 }
