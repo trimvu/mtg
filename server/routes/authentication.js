@@ -112,4 +112,30 @@ router.get('/protected', requireJwt, (req, res)=>{
     res.json({isValid: true})
 })
 
+router.get('/profileInfo', requireJwt, async(req, res) => {
+    
+        
+    try {
+        let id = req.user.id
+        // console.log("USERNAME ID", id)
+        let profile = await db.users.findAll({where: {id: id}})
+        // console.log("the profile: ", profile)
+        res.json(profile)
+
+    } catch (error) {
+
+        console.log(error)
+
+        res.json({error})
+    }
+
+})
+
+// router.get('/profileUserID', requireJwt, async(req, res) => {
+
+//     try {
+//         let 
+//     }
+// })
+
 module.exports = router;

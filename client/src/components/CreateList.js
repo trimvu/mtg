@@ -11,8 +11,23 @@ const CreateList = () => {
 
     const navigate = useNavigate()
     
-    const userID = useSelector((state) => state.userID)
-    console.log(userID)
+    // const userID = useSelector((state) => state.userID)
+    const [userID, setUserID] = useState()
+    // console.log(userID)
+
+    const displayUserID = async() => {
+        try {
+            const data = await axios.get('/profileInfo', {
+                headers: {
+                    "authorization": localStorage.token
+                }
+            })
+            // console.log("the userID data", data)
+            setUserID(data.data[0].id)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const createList = async() => {
         console.log(listname)
@@ -58,11 +73,11 @@ const CreateList = () => {
         navigate(`/list-info/${listname}`)
     }
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     displayListsFetch()
+        displayUserID()
 
-    // }, [])
+    }, [])
 
   return (
     <>
