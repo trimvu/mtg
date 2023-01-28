@@ -8,7 +8,11 @@ const Card = () => {
 
   const [cardInfo, setCardInfo] = useState()
   const [userList, setUserList] = useState()
-  const [quantity, setQuantity] = useState("")
+  // const [quantity, setQuantity] = useState("")
+  const [cardName, setCardName] = useState()
+  const [addedPrice, setAddedPrice] = useState(0)
+  const [currentPrice, setCurrentPrice] = useState(0)
+
 
   let {card} = useParams()
 
@@ -16,8 +20,11 @@ const Card = () => {
 
     const data = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${card}`)
     const details = await data.json();
+    // console.log("cardInfo: ", details);
     setCardInfo(details);
-    // console.log(cardInfo);
+    setCardName(details.name);
+    setAddedPrice(details.prices.usd);
+    setCurrentPrice(details.prices.usd);
 
   }
 
@@ -55,13 +62,13 @@ const Card = () => {
           </div>
         }
 
-        <form>
-          <DisplayLists setUserList={setUserList} />
+          <DisplayLists cardName={cardName} addedPrice={addedPrice} currentPrice={currentPrice} />
+        {/* <form>
           <label>How many would you like to add?<input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} /></label>
           
           <button>Add to list</button>
           
-        </form>
+        </form> */}
     </>
   )
 }

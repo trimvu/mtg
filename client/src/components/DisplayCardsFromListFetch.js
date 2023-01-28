@@ -23,6 +23,12 @@ const DisplayCardsFromListFetch = ({listID}) => {
         }
     }
 
+    const deleteCard = async() => {
+        try {
+            const deleteCard = await axios.delete("/")
+        }
+    }
+
     useEffect(() => {
 
         if (!listID) return;
