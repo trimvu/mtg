@@ -23,9 +23,13 @@ const DisplayCardsFromListFetch = ({listID}) => {
         }
     }
 
-    const deleteCard = async() => {
+    const deleteCard = async(id) => {
         try {
-            const deleteCard = await axios.delete("/")
+            const deleteCard = await axios.delete(`/card/${id}`)
+            
+            setCards(cards.filter(card => card.id !== id))
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -57,6 +61,7 @@ const DisplayCardsFromListFetch = ({listID}) => {
                         <ul key={info.id}>
                             <li>
                                 Card Name: <Link to={`/card-info/${info.cardName}`} className="card-link">{info.cardName}</Link>
+                                <button className='btn btn-danger' onClick={() => deleteCard(info.id)}>Delete</button>
                                 <br /> 
                                 Price when added: {info.addedPrice} 
                                 <br /> 
