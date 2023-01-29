@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
@@ -17,16 +18,19 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
     // })
     const [firstID, setFirstID] = useState()
     const [listID, setListID] = useState()
+    const [listname, setListname] = useState()
     const [quantity, setQuantity] = useState(1)
     // const [cardName, setCardName] = useState()
     // const [addedPrice, setAddedPrice] = useState(0)
     // const [currentPrice, setCurrentPrice] = useState(0)
 
-    console.log("quantity", quantity)
+    // console.log("quantity", quantity)
 
     // setCardName(cardInfo === undefined ? '' : cardInfo.name)
     
     const [allLists, setAllLists] = useState([])
+
+    const navigate = useNavigate();
 
     const displayUserID = async() => {
         try {
@@ -81,10 +85,13 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
         e.preventDefault();
 
         const selectedList = e.target.value
+        const selectedListname = e.target.value2
         
         setListID(selectedList)
+        setListname(selectedListname)
 
         console.log("listID is: ", listID)
+        console.log("listname: ", listname)
 
     }
 
@@ -106,6 +113,7 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
 
         if(submitCard.status === 200){
             alert("Your information was submitted!")
+            navigate(`/list-info/${listname}`)
         }
         else {
             alert("Sorry! Your information was NOT submitted.")
@@ -113,34 +121,47 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
     
     }
 
+    // console.log(listname)
+
   return (
     <>
-        <h2>User's Lists: </h2>
 
         {cardName}
         <br />
         {addedPrice}
         <br />
         {currentPrice}
+        <br /><br />
 
-        <form className='d-flex mt-5' onSubmit={handleSubmit}>
-            <label>Choose a list: </label>
-            <select defaultValue={listID} onChange={handleChange}>
-                {
-                    allLists.map(info => {
-                        return (
-                            <option key={info.id} value={info.id}>
-                                {info.listname}
-                            </option>
-                        )
-                    })
-                }
-            </select>
-            <label>How many would you like to add?<input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} required /></label>
-            
-            <button>Add to list</button>
-        </form>
-        {listID}
+        {
+            userID === undefined
+            ?
+            <div>'Register and sign in to create lists to add cards!'</div>
+            :
+            <div>
+                <h2>User's Lists: </h2>
+                <form className='d-flex mt-5' onSubmit={handleSubmit}>
+                    <label>Choose a list: </label>
+                    <select defaultValue={listID} onChange={handleChange}>
+                        {
+                            allLists.map(info => {
+                                return (
+                                    <option key={info.id} value={info.id}>
+                                        <div setListname={info.listname}>{info.listname}</div>
+                                        {/* {info.listname} */}
+                                    </option>
+                                )
+                            })
+                        }
+                    </select>
+                    <label>How many would you like to add?<input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} required /></label>
+                    
+                    <button>Add to list</button>
+                </form>
+            </div>
+        }
+
+        {/* {listID} */}
     </>
   )
 }
