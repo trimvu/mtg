@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import AddCards from './AddCard'
 import DisplayLists from './DisplayLists'
+import Search from './Search'
 
 
 const Card = () => {
@@ -50,6 +51,8 @@ const Card = () => {
   return (
     <>
         Card
+
+        <Search />
 
         {
           cardInfo === undefined

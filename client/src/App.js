@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Search from './components/Search'
 
 const App = () => {
 
@@ -66,10 +67,11 @@ const App = () => {
     <>
       <div>
           
-          <form onSubmit={handleSubmit}>
+          {/* <form onSubmit={handleSubmit}>
               <input type="text" value={searchInput} onChange={(e)=> setSearchInput(e.target.value)} />
               <input type="submit" />
-          </form>
+          </form> */}
+          <Search />
       </div>
     </>
   )
