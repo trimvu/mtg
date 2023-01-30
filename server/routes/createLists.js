@@ -90,7 +90,20 @@ router.post("/getListID", async (req, res) => {
 //     }
 // })
 
+// update a list name
 
+router.put("/list/:id", async (req, res) => {
+    
+    try {
+        const listname = req.body.listname;
+        const id = req.params.id;
+        const updateListname = await db.lists.update({ listname: listname }, {where: {id: id}})
+
+        res.json("List name was updated!");
+    } catch (err) {
+        return res.status(524).json({error: "Can't find database //update a list name"})
+    }
+})
 
 //delete a list
 

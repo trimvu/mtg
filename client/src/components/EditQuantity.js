@@ -43,7 +43,7 @@ const EditQuantity = ({ info }) => {
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Update Quantity for {info.cardName}</Modal.Title>
+          <Modal.Title>Update Quantity for: {info.cardName}</Modal.Title>
         </Modal.Header>
         <Modal.Body><input type="text" className='form-control' value={quantity} onChange={e => setQuantity(e.target.value)} /></Modal.Body>
         <Modal.Footer>

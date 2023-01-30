@@ -31,9 +31,15 @@ const ListIDFetch = ({list}) => {
         <>
             ListIDFetch
 
-            <h1>ListID: {listID}</h1>
+            {
+                listID === undefined
+                ?
+                <h1>THIS LIST DOES NOT EXIST</h1>
+                :
+                // <h1>ListID: {listID}</h1>
+                <DisplayCardsFromListFetch listID={listID} />
+            }
 
-            <DisplayCardsFromListFetch listID={listID} />
         </>
     )
 }

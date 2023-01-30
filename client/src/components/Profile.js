@@ -4,6 +4,7 @@ import CreateList from './CreateList'
 import DisplayLists from './DisplayLists'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import EditListname from './EditListname'
 
 const Profile = () => {
 
@@ -93,6 +94,8 @@ const Profile = () => {
                   <ul key={info.id}>
                     <li value={info.listname}>
                         <Link to={`/list-info/${info.listname}`}>{info.listname}</Link>
+                        {' '}
+                        <EditListname info={info} />
                         {' '}
                         <button className='btn btn-danger' onClick={() => deleteList(info.id)}>Delete</button>
                     </li>
