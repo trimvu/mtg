@@ -18,7 +18,6 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
     // })
     const [firstID, setFirstID] = useState()
     const [listID, setListID] = useState()
-    const [listname, setListname] = useState()
     const [quantity, setQuantity] = useState(1)
     // const [cardName, setCardName] = useState()
     // const [addedPrice, setAddedPrice] = useState(0)
@@ -85,13 +84,10 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
         e.preventDefault();
 
         const selectedList = e.target.value
-        const selectedListname = e.target.value2
         
         setListID(selectedList)
-        setListname(selectedListname)
 
         console.log("listID is: ", listID)
-        console.log("listname: ", listname)
 
     }
 
@@ -113,7 +109,7 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
 
         if(submitCard.status === 200){
             alert("Your information was submitted!")
-            navigate(`/list-info/${listname}`)
+            window.location.reload();
         }
         else {
             alert("Sorry! Your information was NOT submitted.")
@@ -146,8 +142,8 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
                         {
                             allLists.map(info => {
                                 return (
-                                    <option key={info.id} value={info.id}>
-                                        <div setListname={info.listname}>{info.listname}</div>
+                                    <option key={info.id} value={info.id} listname={info.id}>
+                                        {info.listname}
                                         {/* {info.listname} */}
                                     </option>
                                 )
@@ -161,7 +157,7 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
             </div>
         }
 
-        {/* {listID} */}
+        {listID}
     </>
   )
 }
