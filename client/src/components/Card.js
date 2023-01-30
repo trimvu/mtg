@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import AddCards from './AddCard'
 import DisplayLists from './DisplayLists'
 
 
@@ -62,7 +63,7 @@ const Card = () => {
           </div>
         }
 
-          <DisplayLists cardName={cardName} addedPrice={addedPrice} currentPrice={currentPrice} />
+          <AddCards cardName={cardName} addedPrice={addedPrice} currentPrice={currentPrice} />
         {/* <form>
           <label>How many would you like to add?<input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} /></label>
           
