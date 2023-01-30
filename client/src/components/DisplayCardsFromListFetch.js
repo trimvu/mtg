@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import EditQuantity from './EditQuantity'
 
 const DisplayCardsFromListFetch = ({listID}) => {
 
     const [cards, setCards] = useState([])
+    const [quantity, setQuantity] = useState()
+    const [disableButton, setDisableButton] = useState(true)
+    const [editOrUpdate, setEditOrUpdate] = useState(true)
 
     const viewListCardsFetch = async() => {
 
@@ -32,6 +36,28 @@ const DisplayCardsFromListFetch = ({listID}) => {
             console.log(error)
         }
     }
+
+    const editQuantity = async(id, quantity) => {
+        // e.preventDefault();
+        try {
+            // const body = { quantity }
+            const edit = await axios.put(`/card/${id}`, {
+                quantity
+            })
+
+            setCards(cards.map(card => (card.id === cards.id ? { ...card, quantity: cards.quantity } : card)))
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // const handleChange = (e) => {
+    //     e.preventDefault();
+    //     setEditOrUpdate(!editOrUpdate)
+    //     console.log("click")
+    //     setDisableButton(!disableButton)
+    // }
 
     useEffect(() => {
 
@@ -67,7 +93,14 @@ const DisplayCardsFromListFetch = ({listID}) => {
                                 <br /> 
                                 Current price: {info.currentPrice} 
                                 <br /> 
+                                {/* <form> */}
+                                    {/* Quantity: <input type='number' placeholder={info.quantity}  onChange={(e) => setQuantity(e.target.value)} disabled={disableButton} /> */}
                                 Quantity: {info.quantity}
+                                <EditQuantity info={info} />
+                                <br />
+                                Total of current price: ${info.currentPrice*info.quantity}
+                                {/* </form> */}
+
                                 <br />
                                 ListID: {info.listID}
                             </li>
@@ -75,6 +108,7 @@ const DisplayCardsFromListFetch = ({listID}) => {
                     )
                 })
             }
+
         </>
     )
 }
