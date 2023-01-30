@@ -48,6 +48,18 @@ const Profile = () => {
     }
   }
 
+  const deleteList = async(id) => {
+    try {
+        const deleteList = await axios.delete(`/list/${id}`)
+        
+        setAllLists(allLists.filter(list => list.id !== id))
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+  // console.log("all lists", allLists)
+
   useEffect(() => {
 
     displayUserProfile();
@@ -81,6 +93,8 @@ const Profile = () => {
                   <ul key={info.id}>
                     <li value={info.listname}>
                         <Link to={`/list-info/${info.listname}`}>{info.listname}</Link>
+                        {' '}
+                        <button className='btn btn-danger' onClick={() => deleteList(info.id)}>Delete</button>
                     </li>
                   </ul>
                 )
