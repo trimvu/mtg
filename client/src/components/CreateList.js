@@ -45,7 +45,9 @@ const CreateList = () => {
                 userID
             })
 
-            // console.log(data)
+            // console.log("createlist data", data.data.id)
+            // setlistID(data.data.id)
+            navigate(`/list-info/${data.data.id}/${listname}`)
             window.location.reload();
         } catch (error) {
             console.log(error)
@@ -70,7 +72,7 @@ const CreateList = () => {
     const handleSubmit = e => {
         e.preventDefault();
         createList();
-        navigate(`/list-info/${listname}`)
+        // navigate(`/list-info/${listID}/${listname}`)
     }
 
     useEffect(() => {

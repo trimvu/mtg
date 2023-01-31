@@ -44,7 +44,7 @@ root.render(
           <Route path='/signin' element={<Signin />}/>
           <Route path='/signout' element={<Signout />}/>
           <Route path='/card-info/:card' element={<Card />}/>
-          <Route path='/list-info/:list' element={<List />}/>
+          <Route path='/list-info/:id/:list' element={<List />}/>
           <Route path='/profile' element={<RequireAuth><Profile /></RequireAuth>}/>
         </Routes>
       </BaseLayout>

@@ -36,7 +36,7 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
 
             // window.location = '/profile';
             
-            setAllLists(data.data)
+            setAllLists(data.data.sort((a, b) => a.id - b.id))
             setListID(data.data[0].id)
             // console.log("first", data.data[0].id)
         } catch (error) {
@@ -88,11 +88,11 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
         console.log(submitCard)
 
         if(submitCard.status === 200){
-            alert("Your information was submitted!")
+            alert("This card was submitted to your list!")
             window.location.reload();
         }
         else {
-            alert("Sorry! Your information was NOT submitted.")
+            alert("Sorry! This card was NOT submitted to your list.")
         }
     
     }
