@@ -89,11 +89,15 @@ const Profile = () => {
         {/* <DisplayLists /> */}
 
         {
-            allLists.map(info => {
+            allLists === undefined
+            ?
+            ''
+            :
+            allLists.sort((a, b) => a.id - b.id).map(info => {
                 return (
                   <ul key={info.id}>
                     <li value={info.listname}>
-                        <Link to={`/list-info/${info.listname}`}>{info.listname}</Link>
+                        <Link to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link>
                         {' '}
                         <EditListname info={info} />
                         {' '}

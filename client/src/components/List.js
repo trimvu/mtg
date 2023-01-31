@@ -12,7 +12,7 @@ const List = () => {
 //   const [quantity, setQuantity] = useState("")
 
   let {list} = useParams()
-//   console.log("list is: ", list)
+  console.log("list is: ", list)
 
 //   const [cards, setCards] = useState([])
 
