@@ -17,6 +17,7 @@ import { checkToken } from './actions'
 import Profile from './components/Profile';
 import Card from './components/Card';
 import List from './components/List';
+import SearchResults from './components/SearchResults';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -43,6 +44,7 @@ root.render(
           <Route path='/signup' element={<Signup />}/>
           <Route path='/signin' element={<Signin />}/>
           <Route path='/signout' element={<Signout />}/>
+          <Route path='/search-result/:search' element={<SearchResults />}/>
           <Route path='/card-info/:card' element={<Card />}/>
           <Route path='/list-info/:id/:list' element={<List />}/>
           <Route path='/profile' element={<RequireAuth><Profile /></RequireAuth>}/>
