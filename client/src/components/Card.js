@@ -57,6 +57,7 @@ const Card = () => {
         {
           cardInfo === undefined
           ?
+          // <h1>NO CARD IN DATABASE</h1>
           ''
           :
           <div>
