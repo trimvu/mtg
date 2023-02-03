@@ -6,6 +6,7 @@ import EditQuantity from './EditQuantity'
 const DisplayCardsFromListFetch = ({listID}) => {
 
     const [cards, setCards] = useState([])
+    const [arrayCardNames, setArrayCardNames] = useState([])
     const [quantity, setQuantity] = useState()
     const [disableButton, setDisableButton] = useState(true)
     const [editOrUpdate, setEditOrUpdate] = useState(true)
@@ -28,12 +29,32 @@ const DisplayCardsFromListFetch = ({listID}) => {
 
             setCards(data.data)
 
+            setArrayCardNames(data.data.sort((a, b) => a - b).map(e => e.cardName))
+
+            // console.log("set array card names", data.data.sort((a,b) => a - b).map(e => e.cardName))
+
             // cards.sort(sortID)
 
             // setCards(data.sort(sortID).data)
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const updatePrice = async () => {
+
+        try {
+            arrayCardNames.forEach(element => {
+                const data = fetch(`https://api.scryfall.com/cards/named?fuzzy=${element.cardName}`)
+                const details = data.json();
+                console.log("update price: ", details);
+                
+            });
+        } catch (error) {
+            console.log(error)
+        }
+
+    
     }
 
     const deleteCard = async(id) => {
