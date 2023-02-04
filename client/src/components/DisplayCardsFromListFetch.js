@@ -31,6 +31,13 @@ const DisplayCardsFromListFetch = ({listID}) => {
 
             setArrayCardNames(data.data.sort((a, b) => a - b).map(e => e.cardName))
 
+            data.data.sort((a, b) => a - b).map(e => e.cardName).forEach(element => {
+                const data = axios.get(`https://api.scryfall.com/cards/named?fuzzy=${element}`)
+                console.log("update price: ", data);
+                
+            });
+
+
             // console.log("set array card names", data.data.sort((a,b) => a - b).map(e => e.cardName))
 
             // cards.sort(sortID)
@@ -44,7 +51,7 @@ const DisplayCardsFromListFetch = ({listID}) => {
     const updatePrice = async () => {
 
         try {
-            arrayCardNames.forEach(element => {
+            arrayCardIDs.forEach(element => {
                 const data = fetch(`https://api.scryfall.com/cards/named?fuzzy=${element.cardName}`)
                 const details = data.json();
                 console.log("update price: ", details);
@@ -97,6 +104,8 @@ const DisplayCardsFromListFetch = ({listID}) => {
         const getCards = async () => {
 
             await viewListCardsFetch()
+            // await updatePrice()
+            
         }
 
         getCards()
