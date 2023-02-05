@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Random from './components/Random'
 import Search from './components/Search'
 
 const App = () => {
@@ -72,6 +73,7 @@ const App = () => {
               <input type="submit" />
           </form> */}
           <Search />
+          <Random />
       </div>
     </>
   )
