@@ -31,11 +31,11 @@ const DisplayCardsFromListFetch = ({listID}) => {
 
             setArrayCardNames(data.data.sort((a, b) => a - b).map(e => e.cardName))
 
-            data.data.sort((a, b) => a - b).map(e => e.cardName).forEach(element => {
-                const data = axios.get(`https://api.scryfall.com/cards/named?fuzzy=${element}`)
-                console.log("update price: ", data);
+            // data.data.sort((a, b) => a - b).map(e => e.cardName).forEach(element => {
+            //     const data = axios.get(`https://api.scryfall.com/cards/named?fuzzy=${element}`)
+            //     console.log("update price: ", data);
                 
-            });
+            // });
 
 
             // console.log("set array card names", data.data.sort((a,b) => a - b).map(e => e.cardName))
@@ -48,21 +48,30 @@ const DisplayCardsFromListFetch = ({listID}) => {
         }
     }
 
-    const updatePrice = async () => {
+    // const updatePrice = async () => {
 
-        try {
-            arrayCardIDs.forEach(element => {
-                const data = fetch(`https://api.scryfall.com/cards/named?fuzzy=${element.cardName}`)
-                const details = data.json();
-                console.log("update price: ", details);
+    //     try {
+    //         arrayCardNames.forEach(element => {
+    //             const data = fetch(`https://api.scryfall.com/cards/named?fuzzy=${element.cardName}`)
+    //             const details = data.json();
+    //             console.log("update price: ", details);
                 
-            });
-        } catch (error) {
-            console.log(error)
-        }
+    //         });
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
 
     
-    }
+    // }
+
+    const updatePrice = Promise.all(
+        arrayCardNames.map(async (card) => {
+            const response = await fetch (`https://api.scryfall.com/cards/named?fuzzy=${card}`);
+            return await response.json();
+        })
+    )
+
+    console.log('updated price 1: ', updatePrice[0] === undefined ? '' : updatePrice[0])
 
     const deleteCard = async(id) => {
         try {
