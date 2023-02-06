@@ -31,6 +31,40 @@ const DisplayCardsFromListFetch = ({listID}) => {
 
             setArrayCardNames(data.data.sort((a, b) => a - b).map(e => e.cardName))
 
+            // const FetchFn = () => {
+            //     data.data.sort((a, b) => a.id - b.id).map(e => e.cardName).forEach(item => {
+            //         fetch(`https://api.scryfall.com/cards/named?fuzzy=${item}`)
+            //         .then(res => console.log(res.url))
+            //     })
+            // }
+
+            // FetchFn()
+
+            try {
+                data.data.sort((a, b) => a.id - b.id).map(e => {
+                    // console.log(e.cardName)
+                    axios.post("https://api.scryfall.com/cards/collection", {
+                        "identifiers": [
+                            {
+                                "name": `${e.cardName}`
+                            }
+                        ]
+                    }).then(res => {
+                        try {
+                            const data = axios.put(`/card-price-update/${data.data.id}`, {
+                                res
+                            })
+                        } catch (error) {
+                            console.log(error)
+                        }
+                    })
+
+                    // console.log("please GOD: ", data)
+                })
+            } catch (error) {
+                console.log(error)
+            }
+
             // data.data.sort((a, b) => a - b).map(e => e.cardName).forEach(element => {
             //     const data = axios.get(`https://api.scryfall.com/cards/named?fuzzy=${element}`)
             //     console.log("update price: ", data);
@@ -64,14 +98,14 @@ const DisplayCardsFromListFetch = ({listID}) => {
     
     // }
 
-    const updatePrice = Promise.all(
-        arrayCardNames.map(async (card) => {
-            const response = await fetch (`https://api.scryfall.com/cards/named?fuzzy=${card}`);
-            return await response.json();
-        })
-    )
+    // const updatePrice = Promise.all(
+    //     arrayCardNames.map(async (card) => {
+    //         const response = await fetch (`https://api.scryfall.com/cards/named?fuzzy=${card}`);
+    //         return await response.json();
+    //     })
+    // )
 
-    console.log('updated price 1: ', updatePrice[0] === undefined ? '' : updatePrice[0])
+    // console.log('updated price 1: ', updatePrice[0] === undefined ? '' : updatePrice[0])
 
     const deleteCard = async(id) => {
         try {
