@@ -1,1 +1,1 @@
-# HELLO WORLD
+# Tri Vu's Magic: The Gathering App
