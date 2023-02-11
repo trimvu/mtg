@@ -31,6 +31,21 @@ const DisplayCardsFromListFetch = ({listID}) => {
 
             setArrayCardNames(data.data.sort((a, b) => a - b).map(e => e.cardName))
 
+            let arr = []
+
+            for (let i = 0; i < data.data.length; i++) {
+                arr.push(data.data[i].cardName)
+            };
+
+            console.log("arr:", arr)
+
+            // try {
+                arr.forEach(item => {
+                    fetch(`https://api.scryfall.com/cards/named?fuzzy=${item}`)
+                    .then(res => res.json())
+                    .then(data => console.log(data.name))
+                })
+
             // const FetchFn = () => {
             //     data.data.sort((a, b) => a.id - b.id).map(e => e.cardName).forEach(item => {
             //         fetch(`https://api.scryfall.com/cards/named?fuzzy=${item}`)
@@ -40,30 +55,27 @@ const DisplayCardsFromListFetch = ({listID}) => {
 
             // FetchFn()
 
-            try {
-                data.data.sort((a, b) => a.id - b.id).map(e => {
-                    // console.log(e.cardName)
-                    axios.post("https://api.scryfall.com/cards/collection", {
-                        "identifiers": [
-                            {
-                                "name": `${e.cardName}`
-                            }
-                        ]
-                    }).then(res => {
-                        try {
-                            const data = axios.put(`/card-price-update/${data.data.id}`, {
-                                res
-                            })
-                        } catch (error) {
-                            console.log(error)
-                        }
-                    })
+            // try {
+            //     data.data.sort((a, b) => a.id - b.id).map(e => {
+            //         // console.log(e.cardName)
+            //         axios.post("https://api.scryfall.com/cards/collection", {
+            //             "identifiers": [
+            //                 {
+            //                     "name": `${e.cardName}`
+            //                 }
+            //             ]
+            //         })
+            //         .then(res => {return res.json()})
+            //         .then(data => {
+            //             console.log(data)
+            //         })
 
-                    // console.log("please GOD: ", data)
-                })
-            } catch (error) {
-                console.log(error)
-            }
+
+            //         // console.log("please GOD: ", data)
+            //     })
+            // } catch (error) {
+            //     console.log(error)
+            // }
 
             // data.data.sort((a, b) => a - b).map(e => e.cardName).forEach(element => {
             //     const data = axios.get(`https://api.scryfall.com/cards/named?fuzzy=${element}`)
