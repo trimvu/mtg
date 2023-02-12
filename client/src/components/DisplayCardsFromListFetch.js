@@ -34,17 +34,27 @@ const DisplayCardsFromListFetch = ({listID}) => {
             let arr = []
 
             for (let i = 0; i < data.data.length; i++) {
-                arr.push(data.data[i].cardName)
+                arr.push(data.data[i])
             };
 
             console.log("arr:", arr)
 
+            let arr2 = arr.sort((a, b) => a.id - b.id)
+
+            console.log("arr2", arr2)
+
             // try {
-                arr.forEach(item => {
-                    fetch(`https://api.scryfall.com/cards/named?fuzzy=${item}`)
+                // arr.forEach(item => {
+                //     fetch(`https://api.scryfall.com/cards/named?fuzzy=${item.cardName}`)
+                //     .then(res => res.json())
+                //     .then(data => console.log(data.name))
+                // })
+
+            for (let i = 0; i < arr2.length; i++) {
+                fetch(`https://api.scryfall.com/cards/named?fuzzy=${arr2[i].cardName}`)
                     .then(res => res.json())
-                    .then(data => console.log(data.name))
-                })
+                    .then(data => console.log(i, data.name, data.prices.usd))
+            }
 
             // const FetchFn = () => {
             //     data.data.sort((a, b) => a.id - b.id).map(e => e.cardName).forEach(item => {
