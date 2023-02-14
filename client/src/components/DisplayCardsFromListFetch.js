@@ -10,11 +10,26 @@ const DisplayCardsFromListFetch = ({listID}) => {
     const [quantity, setQuantity] = useState()
     const [disableButton, setDisableButton] = useState(true)
     const [editOrUpdate, setEditOrUpdate] = useState(true)
+    // const [currentPrice, setCurrentPrice] = useState('')
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD'
     });
+
+    const updatePrice = async(id, currentPrice) => {
+        // e.preventDefault();
+        try {
+
+            const edit = await axios.put(`/card-price-update/${id}`, {
+                currentPrice
+            })
+
+            // window.location = `/list-info/${listname}`
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const viewListCardsFetch = async() => {
 
@@ -53,7 +68,8 @@ const DisplayCardsFromListFetch = ({listID}) => {
             for (let i = 0; i < arr2.length; i++) {
                 fetch(`https://api.scryfall.com/cards/named?fuzzy=${arr2[i].cardName}`)
                     .then(res => res.json())
-                    .then(data => console.log(i, data.name, data.prices.usd))
+                    // .then(data => console.log(i, data.name, data.prices.usd, arr2[i]))
+                    .then(data => updatePrice(arr2[i].id, data.prices.usd))
             }
 
             // const FetchFn = () => {
