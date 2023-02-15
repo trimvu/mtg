@@ -42,9 +42,9 @@ const DisplayCardsFromListFetch = ({listID}) => {
 
             console.log("list cards fetch ", data)
 
-            setCards(data.data)
+            // setCards(data.data)
 
-            setArrayCardNames(data.data.sort((a, b) => a - b).map(e => e.cardName))
+            // setArrayCardNames(data.data.sort((a, b) => a - b).map(e => e.cardName))
 
             let arr = []
 
@@ -70,6 +70,7 @@ const DisplayCardsFromListFetch = ({listID}) => {
                     .then(res => res.json())
                     // .then(data => console.log(i, data.name, data.prices.usd, arr2[i]))
                     .then(data => updatePrice(arr2[i].id, data.prices.usd))
+                    .then(() => setCards([...arr2]))
             }
 
             // const FetchFn = () => {
@@ -155,21 +156,6 @@ const DisplayCardsFromListFetch = ({listID}) => {
         }
     }
 
-    const editQuantity = async(id, quantity) => {
-        // e.preventDefault();
-        try {
-            // const body = { quantity }
-            const edit = await axios.put(`/card/${id}`, {
-                quantity
-            })
-
-            setCards(cards.map(card => (card.id === cards.id ? { ...card, quantity: cards.quantity } : card)))
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     // const handleChange = (e) => {
     //     e.preventDefault();
     //     setEditOrUpdate(!editOrUpdate)
@@ -185,7 +171,6 @@ const DisplayCardsFromListFetch = ({listID}) => {
         const getCards = async () => {
 
             await viewListCardsFetch()
-            // await updatePrice()
             
         }
 
