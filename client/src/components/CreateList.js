@@ -86,7 +86,7 @@ const CreateList = () => {
         <h3 className='text-center'>CreateList</h3>
 
         <form className='d-flex mt-5' onSubmit={handleSubmit}>
-            <input type='text' className='form-control' value={listname} onChange={e => setListname(e.target.value)} />
+            <input type='text' className='form-control' value={listname} onChange={e => setListname(e.target.value)} required/>
             <button className='btn btn-success'>Create List</button>
         </form>
 
