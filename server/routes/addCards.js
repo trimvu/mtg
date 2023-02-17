@@ -35,6 +35,19 @@ router.post("/cardList", async(req, res) => {
     }
 })
 
+// get ALL ALL cards
+
+router.get("/cardAll", async(req, res) => {
+
+    try {
+        const allCards = await db.cards.findAll()
+        // console.log("all list cards ", allCards.sort((a, b) => a.id - b.id))
+        res.json(allCards.sort((a, b) => a.id - b.id))
+    } catch (err) {
+        return res.status(624).json({error: "Can't find database //get all cards from a list"})
+    }
+})
+
 // get a card
 
 router.get("/card/:id", async (req, res) => {
