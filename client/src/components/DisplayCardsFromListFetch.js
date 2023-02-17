@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import EditQuantity from './EditQuantity'
 
 const DisplayCardsFromListFetch = ({listID}) => {
@@ -11,6 +11,8 @@ const DisplayCardsFromListFetch = ({listID}) => {
     const [disableButton, setDisableButton] = useState(true)
     const [editOrUpdate, setEditOrUpdate] = useState(true)
     // const [currentPrice, setCurrentPrice] = useState('')
+
+    const navigate = useNavigate();
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -69,22 +71,22 @@ const DisplayCardsFromListFetch = ({listID}) => {
                 //     .then(data => console.log(data.name))
                 // })
 
-            for (let i = 0; i < data.data.length; i++) {
-                fetch(`https://api.scryfall.com/cards/named?fuzzy=${data.data[i].cardName}`)
-                    .then(res => res.json())
-                    // .then(result => console.log(i, result.name, result.prices.usd, data.data[i]))
-                    .then(result => {
-                        updatePrice(data.data[i].id, result.prices.usd)
-                        // setCards([...data.data])
-                        // arr = data.data.sort((a, b) => a.id - b.id)
-                    })
-                    // .then(() => setCards([...data.data]))
-                    // .then(() => {
-                    //     for (let i = 0; i < data.data.length; i++) {
-                    //         arr.push(data.data[i])
-                    //     };
-                    // })
-                }
+            // for (let i = 0; i < data.data.length; i++) {
+            //     fetch(`https://api.scryfall.com/cards/named?fuzzy=${data.data[i].cardName}`)
+            //         .then(res => res.json())
+            //         // .then(result => console.log(i, result.name, result.prices.usd, data.data[i]))
+            //         .then(result => {
+            //             updatePrice(data.data[i].id, result.prices.usd)
+            //             // setCards([...data.data])
+            //             // arr = data.data.sort((a, b) => a.id - b.id)
+            //         })
+            //         // .then(() => setCards([...data.data]))
+            //         // .then(() => {
+            //         //     for (let i = 0; i < data.data.length; i++) {
+            //         //         arr.push(data.data[i])
+            //         //     };
+            //         // })
+            //     }
                 // console.log("arr", arr)
 
             // if ((newArr.length == arr2.length) && newArr.every(function(element, index){return element === arr2[index]})) {
@@ -159,6 +161,7 @@ const DisplayCardsFromListFetch = ({listID}) => {
             })
             console.log("data2", data2.data)
             setCards(data2.data)
+            navigate('/list-info/1/Elemental%20cards!!')
         } catch (error) {
             console.log(error)
         }
@@ -219,6 +222,8 @@ const DisplayCardsFromListFetch = ({listID}) => {
         }
 
         getCards()
+
+        
 
     }, [listID])
 

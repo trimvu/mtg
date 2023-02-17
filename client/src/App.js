@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Random from './components/Random'
 import Search from './components/Search'
@@ -50,6 +51,60 @@ const App = () => {
     setSearchInput(data.Search)
   }
 
+  const updatePrice = async(id, currentPrice) => {
+    // e.preventDefault();
+    try {
+
+        const edit = await axios.put(`/card-price-update/${id}`, {
+            currentPrice
+        })
+
+        // window.location = `/list-info/${listname}`
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+  const allCardsInDB = async () => {
+    try {
+      const data = await axios.get("/cardAll")
+      console.log(data)
+
+      for (let i = 0; i < data.data.length; i++) {
+          fetch(`https://api.scryfall.com/cards/named?fuzzy=${data.data[i].cardName}`)
+              .then(res => res.json())
+              // .then(result => console.log(i, result.name, result.prices.usd, data.data[i]))
+              .then(result => {
+                  updatePrice(data.data[i].id, result.prices.usd)
+
+              })
+
+          }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  console.log("date", new Date().toLocaleDateString())
+
+  const checkIfNextDay = () => {
+    
+    var date = new Date().toLocaleDateString();
+
+    if( localStorage.yourapp_date == date ) 
+        return false;
+
+    localStorage.yourapp_date = date;
+    return true;
+  }
+
+  const refreshAtMidnight = () => {
+    if( !checkIfNextDay() ) return false;
+  
+    allCardsInDB()
+    alert("It's a new day, and the price of cards has updated!");
+  }
+
   // useEffect(() => {
   //   console.log(searchInput)
   // }, [])
@@ -63,6 +118,10 @@ const App = () => {
     navigate(`/card-info/${searchInput}`)
 
   }
+
+  useEffect(() => {
+    refreshAtMidnight()
+  }, [])
 
   return (
     <>
