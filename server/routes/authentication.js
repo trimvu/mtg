@@ -131,6 +131,18 @@ router.get('/profileInfo', requireJwt, async(req, res) => {
 
 })
 
+router.put('/editUsername/:id', async(req, res) => {
+    try {
+        const username = req.body.username;
+        const id = req.params.id;
+        const updateUsername = await db.users.update({ username: username }, {where: {id: id}})
+
+        res.json("List name was updated!");
+    } catch (err) {
+        return res.status(424).json({error: "Can't find database //update a username"})
+    }
+})
+
 // router.get('/profileUserID', requireJwt, async(req, res) => {
 
 //     try {
