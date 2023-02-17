@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom'
 import EditListname from './EditListname'
 import EditUsername from './EditUsername'
 
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+
 const Profile = () => {
 
   // const username = useSelector((state) => state.username)
@@ -62,6 +65,36 @@ const Profile = () => {
     }
   }
 
+  const deleteUser = async(id) => {
+    try {
+        const deleteUser = await axios.delete(`/deleteUser/${id}`)
+        
+        // setAllLists(allLists.filter(list => list.id !== id))
+        alert('User was deleted!')
+        window.location = '/'
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+  const handleDeleteUser = () => {
+
+    confirmAlert({
+      title: 'Are you sure you want to delete your account? You cannot recover afterwards.',
+      Message: 'Are you sure you want to delete your account? You cannot recover afterwards.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => deleteUser(userID)
+        },
+        {
+          label: 'No',
+          // onClick: () => alert('User was not deleted')
+        }
+      ]
+    })
+  }
+
   // console.log("all lists", allLists)
 
   useEffect(() => {
@@ -89,6 +122,14 @@ const Profile = () => {
           {username}'s Profile
           <br />
           <EditUsername userInfo={userInfo} />
+          <br />
+          {
+            userID === undefined
+            ?
+            ''
+            :
+            <button className='btn btn-danger' onClick={handleDeleteUser}>Delete User</button>
+          }
         </h1>
         <CreateList />
         {/* <DisplayLists /> */}
@@ -106,7 +147,7 @@ const Profile = () => {
                         {' '}
                         <EditListname info={info} />
                         {' '}
-                        <button className='btn btn-danger' onClick={() => deleteList(info.id)}>Delete</button>
+                        <button className='btn btn-danger' onClick={() => deleteList(info.id)}>Delete List</button>
                     </li>
                   </ul>
                 )
