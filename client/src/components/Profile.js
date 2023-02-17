@@ -5,6 +5,7 @@ import DisplayLists from './DisplayLists'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import EditListname from './EditListname'
+import EditUsername from './EditUsername'
 
 const Profile = () => {
 
@@ -16,6 +17,7 @@ const Profile = () => {
   const [username, setUsername] = useState()
   const [userID, setUserID] = useState()
   const [allLists, setAllLists] = useState([])
+  const [userInfo, setUserInfo] = useState()
 
   const displayUserProfile = async() => {
     try {
@@ -27,6 +29,7 @@ const Profile = () => {
         // console.log("the username data", data)
         setUsername(data.data[0].username)
         setUserID(data.data[0].id)
+        setUserInfo(data.data[0])
     } catch (error) {
         console.log(error)
     }
@@ -84,6 +87,8 @@ const Profile = () => {
     <>
         <h1 className='text-center'>
           {username}'s Profile
+          <br />
+          <EditUsername userInfo={userInfo} />
         </h1>
         <CreateList />
         {/* <DisplayLists /> */}
