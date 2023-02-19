@@ -54,9 +54,20 @@ const Profile = () => {
         console.log(error)
     }
   }
+  
+  const deleteAllCardsFromList = async(listID) => {
+    try {
+      const deleteAllCards = await axios.delete(`deleteAllCards/${listID}`)
+
+      console.log("all cards were deleted!")
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const deleteList = async(id) => {
     try {
+        deleteAllCardsFromList(id)
         const deleteList = await axios.delete(`/list/${id}`)
         
         setAllLists(allLists.filter(list => list.id !== id))
