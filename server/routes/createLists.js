@@ -120,4 +120,20 @@ router.delete("/list/:id", async (req, res) => {
     }
 })
 
+// delete all lists in profile
+
+router.delete("/deleteAllLists/:userID", async (req, res) => {
+    // let id = req.body;
+    
+    try {
+        const userID = req.params.userID;
+        console.log(userID)
+        const deleteAllList = await db.lists.destroy({where: {userID: userID}})
+
+        res.json("All lists were deleted!");
+    } catch (err) {
+        return res.status(524).json({error: "Can't find database //delete all list"})
+    }
+})
+
 module.exports = router;

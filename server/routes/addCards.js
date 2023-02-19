@@ -117,7 +117,7 @@ router.delete("/deleteAllCards/:listID", async (req, res) => {
         // console.log(req.params.listID)
         const listID = req.params.listID;
         // console.log(listID)
-        const deleteCard = await db.cards.destroy({where: {listID: listID}})
+        const deleteAllCards = await db.cards.destroy({where: {listID: listID}})
 
         res.json("All cards from list were deleted!");
     } catch (err) {
