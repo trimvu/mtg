@@ -108,4 +108,21 @@ router.delete("/card/:id", async (req, res) => {
     }
 })
 
+// delete all cards from a list
+
+router.delete("/deleteAllCards/:listID", async (req, res) => {
+    // let id = req.body;
+    
+    try {
+        // console.log(req.params.listID)
+        const listID = req.params.listID;
+        // console.log(listID)
+        const deleteCard = await db.cards.destroy({where: {listID: listID}})
+
+        res.json("All cards from list were deleted!");
+    } catch (err) {
+        return res.status(624).json({error: "Can't find database //delete a card"})
+    }
+})
+
 module.exports = router;

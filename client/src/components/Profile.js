@@ -60,6 +60,7 @@ const Profile = () => {
         const deleteList = await axios.delete(`/list/${id}`)
         
         setAllLists(allLists.filter(list => list.id !== id))
+        console.log('list deleted')
     } catch (error) {
         console.log(error)
     }
