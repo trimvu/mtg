@@ -77,8 +77,19 @@ const Profile = () => {
     }
   }
 
+  const deleteAllListsFromUser = async(id) => {
+    try {
+      const deleteAllLists = await axios.delete(`/deleteAllLists/${id}`)
+
+      console.log('all lists were deleted!')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const deleteUser = async(id) => {
     try {
+        // deleteAllListsFromUser(id)
         const deleteUser = await axios.delete(`/deleteUser/${id}`)
         
         // setAllLists(allLists.filter(list => list.id !== id))

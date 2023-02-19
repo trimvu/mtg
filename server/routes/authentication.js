@@ -148,6 +148,15 @@ router.delete("/deleteUser/:id", async (req, res) => {
     
     try {
         const id = req.params.id;
+        const allUserLists = await db.lists.findAll({where: {userID: id}})
+        // console.log("blah", allUserLists.map(lists => lists.dataValues.id))
+        let allListIDs = allUserLists.map(lists => lists.dataValues.id)
+        // console.log(allListIDs)
+        for (const iteration of allListIDs) {
+            const deleteAllCards = await db.cards.destroy({where: {listID: iteration}})
+        }
+
+        const deleteAllList = await db.lists.destroy({where: {userID: id}})
         const deleteUser = await db.users.destroy({where: {id: id}})
 
         res.json("User was deleted!");
