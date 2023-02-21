@@ -8,6 +8,22 @@ const App = () => {
 
   const [searchInput, setSearchInput] = useState("")
   const [submittedSearchInput, setSubmittedSearchInput] = useState("")
+  const [homeDisplay, setHomeDisplay] = useState(200)
+
+  const displayUserProfile = async() => {
+    try {
+        const data = await axios.get('/profileInfo', {
+            headers: {
+                "authorization": localStorage.token
+            }
+        })
+        console.log("the username data", data)
+        console.log("response code", data.status)
+        setHomeDisplay(data.status)
+    } catch (error) {
+        console.log("the error", error.response.status)
+    }
+  }
 
   const navigate = useNavigate();
 
@@ -120,22 +136,23 @@ const App = () => {
   }
 
   useEffect(() => {
+    displayUserProfile()
     refreshAtMidnight()
   }, [])
 
-  return (
-    <>
-      <div>
+  // return (
+  //   <>
+  //     <div>
           
-          {/* <form onSubmit={handleSubmit}>
-              <input type="text" value={searchInput} onChange={(e)=> setSearchInput(e.target.value)} />
-              <input type="submit" />
-          </form> */}
-          <Search />
-          <Random />
-      </div>
-    </>
-  )
+  //         {/* <form onSubmit={handleSubmit}>
+  //             <input type="text" value={searchInput} onChange={(e)=> setSearchInput(e.target.value)} />
+  //             <input type="submit" />
+  //         </form> */}
+  //         <Search />
+  //         <Random />
+  //     </div>
+  //   </>
+  // )
 }
 
 export default App
