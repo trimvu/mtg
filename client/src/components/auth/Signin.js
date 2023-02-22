@@ -36,7 +36,7 @@ const Signin = () => {
             <div className="user-box">
               <input type="email" value={email} 
               onChange={e=>setEmail(e.target.value)}
-               required/>
+                required/>
               <label>E-mail</label>
             </div>
 
