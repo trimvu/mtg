@@ -39,19 +39,22 @@ const Signup = () => {
               <div className="user-box">
                 <input type="email" value={email} 
                 onChange={e=>setEmail(e.target.value)}
-                placeholder="enter email address" />
+                placeholder="enter email address" 
+                required/>
               </div>
 
               <div className="user-box">
                 <input type="name" value={username} 
                 onChange={e=>setUsername(e.target.value)}
-                placeholder="enter name" />
+                placeholder="enter name" 
+                required/>
               </div>
 
               <div className="user-box">
                 <input type="password" value={password} 
                 onChange={e=>setPassword(e.target.value)}
-                placeholder="enter password" />
+                placeholder="enter password" 
+                required/>
               </div>
 
               <a href="">

@@ -3,12 +3,13 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Random from './components/Random'
 import Search from './components/Search'
+import Signin from './components/auth/Signin'
 
 const App = () => {
 
   const [searchInput, setSearchInput] = useState("")
   const [submittedSearchInput, setSubmittedSearchInput] = useState("")
-  const [homeDisplay, setHomeDisplay] = useState(200)
+  const [homeDisplay, setHomeDisplay] = useState(0)
 
   const displayUserProfile = async() => {
     try {
@@ -153,6 +154,28 @@ const App = () => {
   //     </div>
   //   </>
   // )
+
+  if (homeDisplay === 0) {
+    return (
+      <>
+        <Signin />
+      </>
+    )
+  } else {
+    return (
+      <>
+        <div>
+            
+            {/* <form onSubmit={handleSubmit}>
+                <input type="text" value={searchInput} onChange={(e)=> setSearchInput(e.target.value)} />
+                <input type="submit" />
+            </form> */}
+            <Search />
+            <Random />
+        </div>
+      </>
+    )
+  }
 }
 
 export default App
