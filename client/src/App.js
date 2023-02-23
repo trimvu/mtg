@@ -3,7 +3,8 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Random from './components/Random'
 import Search from './components/Search'
-import Signin from './components/auth/Signin'
+// import Signin from './components/auth/Signin'
+import SigninAndSignup from './components/auth/SigninAndSignup'
 
 const App = () => {
 
@@ -158,7 +159,7 @@ const App = () => {
   if (homeDisplay === 0) {
     return (
       <>
-        <Signin />
+        <SigninAndSignup />
       </>
     )
   } else {

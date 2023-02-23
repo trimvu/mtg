@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import Search from './Search';
 
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
 const SearchResults = () => {
 
     let { search } = useParams();
@@ -10,6 +13,8 @@ const SearchResults = () => {
 
     const [searchResult, setSearchResult] = useState([])
 
+    let arr = []
+
     const fetchInput = async () => {
 
         let url = `https://api.scryfall.com/cards/autocomplete?q=${search}`
@@ -17,9 +22,18 @@ const SearchResults = () => {
         let results = await fetch(url);
     
         let data = await results.json();
-        // console.log("search.js", data.data)
+        console.log("search.js", data.data)
 
-        setSearchResult(data.data)
+        for (let i = 0; i < data.data.length; i++) {
+            fetch(`https://api.scryfall.com/cards/named?fuzzy=${data.data[i]}`)
+                .then(res => res.json())
+                .then(result => {
+                    setSearchResult(oldArr => [...oldArr, result])
+                    // console.log("lbk", searchResult)
+                })
+        }
+
+        // setSearchResult(data.data)
     
         // setSearchInput(data.Search)
 
@@ -32,6 +46,7 @@ const SearchResults = () => {
         
     }, [])
     
+    // console.log("arr", arr)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -49,6 +64,8 @@ const SearchResults = () => {
 
             <Search />
 
+            <br />
+
             {
                 searchResult === undefined
                 ?
@@ -56,9 +73,20 @@ const SearchResults = () => {
                 :
                 searchResult.map(info => {
                     return (
-                        <ul key={info}>
-                            <Link to={`/card-info/${info}`}>{info}</Link>
-                        </ul>
+                        // <ul key={info.name}>
+                        //     <img src={`${info.image_uris.normal}`} alt="react logo" style={{ width: '200px', }}/>
+                        //     <br />
+                        //     <Link to={`/card-info/${info.name}`}>{info.name}</Link>
+                        // </ul>
+                        <div style={{ display: 'flex', flexWrap : 'wrap', justifyContent : 'center' }}>
+                            <Card style={{ width: '18rem', margin : '1vh'}} key={info.name}>
+                                <Card.Img variant="top" src={`${info.image_uris.normal}`} />
+                                <Card.Body>
+                                    <Card.Title style={{ textAlign: 'center' }}><Link to={`/card-info/${info.name}`}>{info.name}</Link></Card.Title>
+                                </Card.Body>
+                            </Card>
+
+                        </div>
                     )
                 })
             }
