@@ -5,6 +5,8 @@ import Search from './Search';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+import './SearchResults.css'
+
 const SearchResults = () => {
 
     let { search } = useParams();
@@ -66,6 +68,7 @@ const SearchResults = () => {
 
             <br />
 
+            <div className='full-results'>
             {
                 searchResult === undefined
                 ?
@@ -78,18 +81,17 @@ const SearchResults = () => {
                         //     <br />
                         //     <Link to={`/card-info/${info.name}`}>{info.name}</Link>
                         // </ul>
-                        <div style={{ display: 'flex', flexWrap : 'wrap', justifyContent : 'center' }}>
-                            <Card style={{ width: '18rem', margin : '1vh'}} key={info.name}>
+                            <Card className='full-cards' key={info.name}>
                                 <Card.Img variant="top" src={`${info.image_uris.normal}`} />
                                 <Card.Body>
                                     <Card.Title style={{ textAlign: 'center' }}><Link to={`/card-info/${info.name}`}>{info.name}</Link></Card.Title>
                                 </Card.Body>
                             </Card>
 
-                        </div>
-                    )
-                })
-            }
+)
+})
+}
+</div>
         </>
     )
 }
