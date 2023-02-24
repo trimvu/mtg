@@ -62,10 +62,6 @@ const SearchResults = () => {
 
     return (
         <>
-            SearchResults
-
-            <Search />
-
             <br />
 
             <div className='full-results'>

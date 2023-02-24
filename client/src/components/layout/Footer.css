@@ -1,0 +1,12 @@
+.footer {
+    background-color: grey;
+    bottom: 0;
+    position: fixed;
+    width: 100vw;
+    text-align: center;
+}
+
+.icons {
+    color: white;
+    margin: 5px 10px;
+}

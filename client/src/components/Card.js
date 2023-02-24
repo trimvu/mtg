@@ -55,12 +55,8 @@ const Card = () => {
   
   return (
     <>
-        Card
-
-        <Search />
-        <Random />
-
         <AddCards cardName={cardName} addedPrice={addedPrice} currentPrice={currentPrice} />
+        
         {
           (cardInfo && legalities) === undefined
           ?
@@ -71,15 +67,16 @@ const Card = () => {
           <div className='contain'>
             <div className='left'>
               <div className='left-contain'>
+                <br />
                 <h1 style={{ textAlign : 'center' }}>{cardInfo.name}</h1>
-                <span>Mana Cost: {cardInfo.mana_cost}</span>
-                <span className='sec-span'>Artist: {cardInfo.artist}</span>
+                <span><b>Mana Cost: </b>{cardInfo.mana_cost}</span>
+                <span className='sec-span'><b>Artist: </b>{cardInfo.artist}</span>
                 <br /><br />
-                <span>Type: {cardInfo.type_line}</span>
-                <span className='sec-span'>Rarity: {cardInfo.rarity}</span>
+                <span><b>Type: </b>{cardInfo.type_line}</span>
+                <span className='sec-span'><b>Rarity: </b>{cardInfo.rarity}</span>
                 <p className='to-br'>{cardInfo.oracle_text}<br /><i>{cardInfo.flavor_text}</i></p>
-                <span>Current Cost: ${cardInfo.prices.usd} USD</span>
-                <span className='sec-span'>Release Date: {cardInfo.released_at}</span>
+                <span><b>Current Cost: </b>${cardInfo.prices.usd} USD</span>
+                <span className='sec-span'><b>Release Date: </b>{cardInfo.released_at}</span>
               </div>
               <br /><br />
               {/* <tr>

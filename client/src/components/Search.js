@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FaSearch } from 'react-icons/fa'
+
+import './Search.css'
 
 const Search = () => {
 
@@ -36,10 +39,13 @@ const Search = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <input type="text" value={searchInput} onChange={(e)=> setSearchInput(e.target.value)} required/>
-                <input type="submit" />
-            </form>
+            <div className='search-bar'>
+                <form onSubmit={handleSubmit}>
+                    <input placeholder='Search' type="text" value={searchInput} onChange={(e)=> setSearchInput(e.target.value)} required/>
+                    <button><FaSearch className='search-icon' size={20} /></button>
+                </form>
+
+            </div>
         </>
     )
 }

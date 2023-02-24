@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FaRandom } from 'react-icons/fa'
+
+import './Random.css'
 
 const Random = () => {
 
@@ -29,7 +32,7 @@ const Random = () => {
 
     return (
         <>
-            <button type='button' onClick={handleSubmit}>Random Card</button>
+            <button type='button' onClick={handleSubmit}><FaRandom className='random-icon' size={20} /></button>
         </>
     )
 }

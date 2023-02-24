@@ -171,8 +171,9 @@ const App = () => {
                 <input type="text" value={searchInput} onChange={(e)=> setSearchInput(e.target.value)} />
                 <input type="submit" />
             </form> */}
-            <Search />
-            <Random />
+            {/* <Search />
+            <Random /> */}
+            Welcome!
         </div>
       </>
     )

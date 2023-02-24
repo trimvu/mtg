@@ -14,15 +14,17 @@ const Signout = () => {
     dispatch(signOut(()=>{
       navigate('/')
     }))
+
   }
 
-  return <div>
-  <h1 className="">Goodbye</h1>
-
-  <h3 className="">...sorry to see you go!</h3>
-
-  <button onClick={logout} >Sign Out</button>
- </div>
+  return (
+    <>
+      <div onClick={logout}>
+        {/* <button onClick={logout} >Sign Out</button> */}
+        Sign Out
+      </div>
+    </>
+  )
 };
 
 export default Signout;
