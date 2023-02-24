@@ -1,0 +1,15 @@
+.search-icon {
+    color: black;
+    margin: 5px 10px;
+}
+
+.search-bar {
+    /* position: absolute; */
+    top: 355px;
+    left: 575px;
+}
+
+.search-bar input {
+    height: 32px;
+    width: 15rem;
+}

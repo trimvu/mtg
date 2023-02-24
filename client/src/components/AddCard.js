@@ -119,8 +119,9 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
             <div>'Register and sign in to create lists to add cards!'</div>
             :
             <div className='add-card-div'>
+                <br />
                 <div>
-                    <h2>Add to User's Lists: </h2>
+                    <h2>Add to User's List: </h2>
                     <br />
                     <form  onSubmit={handleSubmit}>
                         <label>Choose a list: </label>{' '}
@@ -137,7 +138,7 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
                             }
                         </select>
                         
-                        <label className='quantity-margin'>How many would you like to add?<input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min='1' required /></label>
+                        <label className='quantity-margin'>How many would you like to add? <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min='1' required /></label>
                         
                         <button>Add to list</button>
                     </form>
