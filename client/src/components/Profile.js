@@ -11,6 +11,10 @@ import Signout from './auth/Signout'
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
+import './Profile.css'
+
+import { FaTrash } from 'react-icons/fa'
+
 const Profile = () => {
 
   // const username = useSelector((state) => state.username)
@@ -142,41 +146,76 @@ const Profile = () => {
 
   return (
     <>
-        <h1 className='text-center'>
-          {username}'s Profile
+        <br />
+        <div className='user-prof'>
           <br />
-          <EditUsername userInfo={userInfo} />
+          <h1>
+            {username}'s Profile
+          </h1>
           <br />
-          {
-            userID === undefined
-            ?
-            ''
-            :
-            <button className='btn btn-danger' onClick={handleDeleteUser}>Delete User</button>
-          }
-        </h1>
+          <div className='align-update-delete'>
+            <table>
+              <tr>
+                <td><EditUsername userInfo={userInfo} /></td>
+                <td>Update Name</td>
+              </tr>
+              <tr>
+                <td>
+                  {
+                    userID === undefined
+                    ?
+                    ''
+                    :
+                    <button className='btn btn-danger' onClick={handleDeleteUser}><FaTrash className="icons" size={25} /></button>
+                  }
+                </td>
+                <td>Delete User</td>
+              </tr>
+            </table>
+
+            <br /><br />
+          </div>
+        </div>
+        <br />
         <CreateList />
         {/* <DisplayLists /> */}
 
-        {
-            allLists === undefined
-            ?
-            ''
-            :
-            allLists.sort((a, b) => a.id - b.id).map(info => {
-                return (
-                  <ul key={info.id}>
-                    <li value={info.listname}>
-                        <Link to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link>
-                        {' '}
-                        <EditListname info={info} />
-                        {' '}
-                        <button className='btn btn-danger' onClick={() => deleteList(info.id)}>Delete List</button>
-                    </li>
-                  </ul>
-                )
-            })
-        }
+        <div className='list-table'>
+        <br />
+          <table>
+            <tr>
+              <th scope='col'>List Name</th>
+              <th scope='col'>Edit</th>
+              <th scope='col'>Delete</th>
+            </tr>
+              {
+                allLists === undefined
+                  ?
+                  ''
+                  :
+                  allLists.sort((a, b) => a.id - b.id).map(info => {
+                    return (
+                      // <ul key={info.id}>
+                        //   <li value={info.listname}>
+                        //       <Link to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link>
+                        //       {' '}
+                        //       <EditListname info={info} />
+                        //       {' '}
+                        //       <button className='btn btn-danger' onClick={() => deleteList(info.id)}>Delete List</button>
+                        //   </li>
+                        // </ul>
+                      <tr>
+                        <th scope='row'><Link className='prof-link-color' to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link></th>
+                        <td><EditListname info={info} /></td>
+                        <td><button className='btn btn-danger' onClick={() => deleteList(info.id)}><FaTrash className="icons" size={25} /></button></td>
+                      </tr>
+                      )
+                  })
+
+                }
+          </table>
+          <br />
+        </div>
     </>
   )
 }
