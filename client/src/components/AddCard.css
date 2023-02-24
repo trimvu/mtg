@@ -1,0 +1,12 @@
+.add-card-div {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border: #00452c;
+    border-style: solid;
+    border-radius: 20px;
+}
+
+.quantity-margin {
+    margin-left: 1rem;
+}
