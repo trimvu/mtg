@@ -69,29 +69,28 @@ const SearchResults = () => {
             <br />
 
             <div className='full-results'>
-            {
-                searchResult === undefined
-                ?
-                ''
-                :
-                searchResult.map(info => {
-                    return (
-                        // <ul key={info.name}>
-                        //     <img src={`${info.image_uris.normal}`} alt="react logo" style={{ width: '200px', }}/>
-                        //     <br />
-                        //     <Link to={`/card-info/${info.name}`}>{info.name}</Link>
-                        // </ul>
-                            <Card className='full-cards' key={info.name}>
-                                <Card.Img variant="top" src={`${info.image_uris.normal}`} />
-                                <Card.Body>
-                                    <Card.Title style={{ textAlign: 'center' }}><Link to={`/card-info/${info.name}`}>{info.name}</Link></Card.Title>
-                                </Card.Body>
-                            </Card>
-
-)
-})
-}
-</div>
+                {
+                    searchResult === undefined
+                    ?
+                    ''
+                    :
+                    searchResult.map(info => {
+                        return (
+                            // <ul key={info.name}>
+                            //     <img src={`${info.image_uris.normal}`} alt="react logo" style={{ width: '200px', }}/>
+                            //     <br />
+                            //     <Link to={`/card-info/${info.name}`}>{info.name}</Link>
+                            // </ul>
+                                <Card className='full-cards' key={info.name}>
+                                    <Card.Img variant="top" src={`${info.image_uris.normal}`} />
+                                    <Card.Body>
+                                        <Card.Title style={{ textAlign: 'center' }}><Link to={`/card-info/${info.name}`}>{info.name}</Link></Card.Title>
+                                    </Card.Body>
+                                </Card>
+                        )
+                    })
+                }
+            </div>
         </>
     )
 }

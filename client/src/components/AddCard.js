@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+import './AddCard.css'
+
 const AddCards = ({ cardName, addedPrice, currentPrice }) => {
 
     const [userID, setUserID] = useState()
@@ -102,42 +104,48 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
   return (
     <>
 
-        {cardName}
+        {/* {cardName}
         <br />
         {addedPrice}
         <br />
         {currentPrice}
-        <br /><br />
+        <br /><br /> */}
+
+        <br />
 
         {
             userID === undefined
             ?
             <div>'Register and sign in to create lists to add cards!'</div>
             :
-            <div>
-                <h2>User's Lists: </h2>
-                <form className='d-flex mt-5' onSubmit={handleSubmit}>
-                    <label>Choose a list: </label>
-                    <select defaultValue={listID} onChange={handleChange}>
-                        {
-                            allLists.map(info => {
-                                return (
-                                    <option key={info.id} value={info.id} listname={info.id}>
-                                        {info.listname}
-                                        {/* {info.listname} */}
-                                    </option>
-                                )
-                            })
-                        }
-                    </select>
-                    <label>How many would you like to add?<input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min='1' required /></label>
-                    
-                    <button>Add to list</button>
-                </form>
+            <div className='add-card-div'>
+                <div>
+                    <h2>Add to User's Lists: </h2>
+                    <br />
+                    <form  onSubmit={handleSubmit}>
+                        <label>Choose a list: </label>{' '}
+                        <select defaultValue={listID} onChange={handleChange}>
+                            {
+                                allLists.map(info => {
+                                    return (
+                                        <option key={info.id} value={info.id} listname={info.id}>
+                                            {info.listname}
+                                            {/* {info.listname} */}
+                                        </option>
+                                    )
+                                })
+                            }
+                        </select>
+                        
+                        <label className='quantity-margin'>How many would you like to add?<input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min='1' required /></label>
+                        
+                        <button>Add to list</button>
+                    </form>
+                </div>
+                <br />
             </div>
         }
 
-        {listID}
     </>
   )
 }
