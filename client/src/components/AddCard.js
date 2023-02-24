@@ -146,6 +146,7 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
                 <br />
             </div>
         }
+        <br />
 
     </>
   )

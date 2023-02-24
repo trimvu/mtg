@@ -3,6 +3,8 @@ import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import { FaEdit } from 'react-icons/fa'
+
 const EditUsername = ({ userInfo }) => {
 
     // console.log("the userinfo is: ", userInfo)
@@ -34,7 +36,7 @@ const EditUsername = ({ userInfo }) => {
     return (
         <>
             <Button variant="warning" onClick={handleShow}>
-                Update Name / Username
+                <FaEdit className="icons" size={25} />
             </Button>
 
             <Modal show={show} onHide={handleClose} centered>

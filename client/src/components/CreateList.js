@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
+import './CreateList.css'
+
 const CreateList = () => {
 
     const [listname, setListname] = useState("");
@@ -83,14 +85,21 @@ const CreateList = () => {
 
   return (
     <>
-        <h3 className='text-center'>CreateList</h3>
 
-        <form className='d-flex mt-5' onSubmit={handleSubmit}>
-            <input type='text' className='form-control' value={listname} onChange={e => setListname(e.target.value)} required/>
-            <button className='btn btn-success'>Create List</button>
-        </form>
+        <div className='create-input'>
+            <br />
+            <h3 className='text-center'>CreateList</h3>
 
-        <br /><br /><br />
+            <div className='create-input-des'>
+                <form className='d-flex mt-5' onSubmit={handleSubmit}>
+                    <input type='text' className='form-control' value={listname} onChange={e => setListname(e.target.value)} required/>
+                    <button className='btn btn-success create-btn'><b>CREATE</b></button>
+                </form>
+            </div>
+            <br /><br />
+        </div>
+
+        <br />
 
         {/* <h2>User's Lists: </h2>
 

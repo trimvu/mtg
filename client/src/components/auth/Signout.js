@@ -13,6 +13,7 @@ const Signout = () => {
 
     dispatch(signOut(()=>{
       navigate('/')
+      window.location.reload(); 
     }))
 
   }

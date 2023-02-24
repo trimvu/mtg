@@ -157,6 +157,7 @@ const Card = () => {
               </table>
             </div>
 
+            <br />
             
             <div className='right'>
               <br />

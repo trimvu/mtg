@@ -14,16 +14,17 @@ p {
     margin-bottom: 1em;
 }
 
-th, td {
+.left > table > thead > tr > th, 
+.left > table > tbody > tr > td {
     padding: 8px;
     text-align: center;
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
 }
 
-tr:hover {background-color: grey;}
+.left > table > tbody > tr:hover {background-color: grey;}
 
-th {
+.left > table > thead > tr > th {
     background-color: #00452c;
     color: white;
     /* width: 5vw; */
@@ -31,20 +32,20 @@ th {
     text-align: center;
 }
 
-table {
+.left > table {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
 }
 
-tr {
+.left > table > tbody > tr {
     display:inline-block;
     width: 33.3%;
     margin:0;
     padding:0;
 }
 
-td {
+.left > table > tbody > tr > td {
     display:inline-block;
     width: 100%;
     /* margin:0;
@@ -57,7 +58,9 @@ td {
 }
 
 .left {
-    width: 60%;
+    width: 59%;
+    margin-left: auto;
+    margin-right: auto;
     justify-content: center;
     border: #00452c;
     border-style: solid;
@@ -72,10 +75,13 @@ td {
 
 .right {
     /* float: right; */
-    flex-grow: 1;
+    /* flex-grow: 1; */
     border: #00452c;
     border-style: solid;
     border-radius: 20px;
+    width: 39%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 img {
@@ -95,13 +101,13 @@ img {
     .right {
         width: 100%;
     }
-    tr {
+    .left > table > tbody > tr {
         display:inline-block;
         width: 50%;
         margin:0;
         padding:0;
     }
-    th {
+    .left > table > thead > tr > th {
         justify-items: center;
     }
 }
