@@ -3,6 +3,8 @@ import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import { FaEdit } from 'react-icons/fa'
+
 const EditQuantity = ({ info }) => {
     // console.log("info", info)
     // console.log("cards", cards)
@@ -43,8 +45,8 @@ const EditQuantity = ({ info }) => {
     return (
         <>
             {/* EditQuantity */}
-            <Button variant="warning" onClick={handleShow}>
-        Update Quantity
+      <Button variant="warning" onClick={handleShow}>
+        <FaEdit className="icons" size={25} />
       </Button>
 
       <Modal show={show} onHide={handleClose} centered>

@@ -19,13 +19,14 @@
     margin-right: auto;
 }
 
-.list-table > table > tr > td,
-.list-table > table > tr > th {
+.list-table > table > tbody > tr > td,
+.list-table > table > thead > tr > th,
+.list-table > table > tbody > tr > th {
     border: 1px solid rgb(190, 190, 190);
     padding: 10px;
 }
 
-.list-table > table > tr > td {
+.list-table > table > tbody > tr > td {
     text-align: center;
 }
 
@@ -33,12 +34,12 @@
     background-color: #eee;
 } */
 
-.list-table > table > tr > th[scope='col'] {
+.list-table > table > thead > tr > th[scope='col'] {
     background-color: #00452c;
     color: white;
 }
 
-.list-table > table > tr > th[scope='row'] {
+.list-table > table > tbody > tr > th[scope='row'] {
     background-color: grey;
 }
 

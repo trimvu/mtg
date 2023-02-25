@@ -44,7 +44,7 @@ const ListIDFetch = ({list}) => {
     }, [])
     return (
         <>
-            ListIDFetch
+            {/* ListIDFetch */}
 
             {
                 (dataIDs.includes(parseInt(id)) !== true)
@@ -52,7 +52,7 @@ const ListIDFetch = ({list}) => {
                 <h1>THIS LIST DOES NOT EXIST</h1>
                 :
                 // <h1>ListID: {listID}</h1>
-                <DisplayCardsFromListFetch listID={id} />
+                <DisplayCardsFromListFetch listID={id} list={list} />
             }
 
         </>

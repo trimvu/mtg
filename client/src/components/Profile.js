@@ -183,36 +183,40 @@ const Profile = () => {
         <div className='list-table'>
         <br />
           <table>
-            <tr>
-              <th scope='col'>List Name</th>
-              <th scope='col'>Edit</th>
-              <th scope='col'>Delete</th>
-            </tr>
-              {
-                allLists === undefined
-                  ?
-                  ''
-                  :
-                  allLists.sort((a, b) => a.id - b.id).map(info => {
-                    return (
-                      // <ul key={info.id}>
-                        //   <li value={info.listname}>
-                        //       <Link to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link>
-                        //       {' '}
-                        //       <EditListname info={info} />
-                        //       {' '}
-                        //       <button className='btn btn-danger' onClick={() => deleteList(info.id)}>Delete List</button>
-                        //   </li>
-                        // </ul>
+            <thead>
+              <tr>
+                <th scope='col'>List Name</th>
+                <th scope='col'>Edit</th>
+                <th scope='col'>Delete</th>
+              </tr>
+            </thead>
+            {
+              allLists === undefined
+                ?
+                ''
+                :
+                allLists.sort((a, b) => a.id - b.id).map(info => {
+                  return (
+                    // <ul key={info.id}>
+                      //   <li value={info.listname}>
+                      //       <Link to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link>
+                      //       {' '}
+                      //       <EditListname info={info} />
+                      //       {' '}
+                      //       <button className='btn btn-danger' onClick={() => deleteList(info.id)}>Delete List</button>
+                      //   </li>
+                      // </ul>
+                    <tbody key={info.id}>
                       <tr>
                         <th scope='row'><Link className='prof-link-color' to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link></th>
                         <td><EditListname info={info} /></td>
                         <td><button className='btn btn-danger' onClick={() => deleteList(info.id)}><FaTrash className="icons" size={25} /></button></td>
                       </tr>
-                      )
-                  })
+                    </tbody>
+                    )
+                })
 
-                }
+              }
           </table>
           <br />
         </div>
