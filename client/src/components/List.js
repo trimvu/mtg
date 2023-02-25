@@ -93,9 +93,19 @@ const List = () => {
 
   return (
     <>
-        <h3>
-            List info for {list}: 
-        </h3>
+        {/* <br />
+        <div className='contain-list'>
+            <div className='cen-list'>
+                <br />
+                <h2>
+                    List info for 
+                </h2>
+                <h1>
+                    {list}
+                </h1> 
+                <br />
+            </div>
+        </div> */}
 
         {/* {data.data.cardName} */}
         {/* {

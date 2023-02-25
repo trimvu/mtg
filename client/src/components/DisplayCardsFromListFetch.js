@@ -3,9 +3,14 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import EditQuantity from './EditQuantity'
 
-const DisplayCardsFromListFetch = ({listID}) => {
+import './DisplayCardsFromListFetch.css'
+
+import { FaTrash } from 'react-icons/fa'
+
+const DisplayCardsFromListFetch = ({ listID, list }) => {
 
     const [cards, setCards] = useState([])
+    const [total, setTotal] = useState()
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -25,6 +30,10 @@ const DisplayCardsFromListFetch = ({listID}) => {
 
             setCards(data.data)
 
+            setTotal(formatter.format(data.data.reduce(
+                (accumulator, currentValue) => accumulator + (currentValue.currentPrice*currentValue.quantity),
+                0,
+            )))
 
         } catch (error) {
             console.log(error)
@@ -60,60 +69,105 @@ const DisplayCardsFromListFetch = ({listID}) => {
 
     return (
         <>
-            DisplayCardsFromListFetch
+            {/* <br /><br /> */}
+
+            {/* The ListID : {listID} */}
+
+            <br />
+            <div className='contain-list'>
+                <div className='cen-list'>
+                    <br />
+                    <h2>
+                        List info for 
+                    </h2>
+                    <h1>
+                        {list}
+                    </h1> 
+                    <br />
+                </div>
+                <div className='cen-total'>
+                    <br />
+                    <h2>Total cost of list: </h2>{
+                    total === undefined
+                    ?
+                    ''
+                    :
+                    <h1>{total}</h1>
+                }
+                
+                </div>
+            </div>
+
 
             <br />
 
-            The ListID : {listID}
+            <div className='list-card-table'>
+                <br />
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope='col'>Card Name</th>
+                            <th scope='col'>Remove Card</th>
+                            <th scope='col'>Added Price</th>
+                            <th scope='col'>Current Price</th>
+                            <th scope='col'>Quantity</th>
+                            <th scope='col'>Update Quantity</th>
+                            <th scope='col'>Total (of Current Price)</th>
+                        </tr>
+                    </thead>
+                    {
+                        cards === undefined
+                        ?
+                        ''
+                        :
+                        cards.sort((a, b) => a.id - b.id).map(info => {
+                            return (
+                                <tbody  key={info.id}>
+                                    <tr>
+                                        <th scope='row'><Link to={`/card-info/${info.cardName}`} className="card-link-color">{info.cardName}</Link></th>
+                                        <td><button className='btn btn-danger' onClick={() => deleteCard(info.id)}><FaTrash className="icons" size={25} /></button></td>
+                                        <td>{formatter.format(info.addedPrice)}</td>
+                                        <td>{formatter.format(info.currentPrice)}</td>
+                                        <td>{info.quantity}</td>
+                                        <td><EditQuantity info={info} /></td>
+                                        <td>{formatter.format(info.currentPrice*info.quantity)}</td>
+                                    </tr>
+                                </tbody>
+                                // <ul key={info.id}>
+                                //     <li>
+                                //         Card Name: <Link to={`/card-info/${info.cardName}`} className="card-link">{info.cardName}</Link>
+                                //         {' '}
+                                //         <button className='btn btn-danger' onClick={() => deleteCard(info.id)}>Delete</button>
+                                //         <br /> 
+                                //         Price when added: {formatter.format(info.addedPrice)} 
+                                //         <br /> 
+                                //         Current price: {formatter.format(info.currentPrice)} 
+                                //         <br /> 
+                                //         {/* <form> */}
+                                //             {/* Quantity: <input type='number' placeholder={info.quantity}  onChange={(e) => setQuantity(e.target.value)} disabled={disableButton} /> */}
+                                //         Quantity: {info.quantity} 
+                                //         {' '}
+                                //         <EditQuantity info={info} />
+                                //         <br />
+                                //         Total of current price: {formatter.format(info.currentPrice*info.quantity)}
+                                //         {/* </form> */}
 
-            {
-                cards === undefined
-                ?
-                ''
-                :
-                cards.sort((a, b) => a.id - b.id).map(info => {
-                    return (
-                        <ul key={info.id}>
-                            <li>
-                                Card Name: <Link to={`/card-info/${info.cardName}`} className="card-link">{info.cardName}</Link>
-                                {' '}
-                                <button className='btn btn-danger' onClick={() => deleteCard(info.id)}>Delete</button>
-                                <br /> 
-                                Price when added: {formatter.format(info.addedPrice)} 
-                                <br /> 
-                                Current price: {formatter.format(info.currentPrice)} 
-                                <br /> 
-                                {/* <form> */}
-                                    {/* Quantity: <input type='number' placeholder={info.quantity}  onChange={(e) => setQuantity(e.target.value)} disabled={disableButton} /> */}
-                                Quantity: {info.quantity} 
-                                {' '}
-                                <EditQuantity info={info} />
-                                <br />
-                                Total of current price: {formatter.format(info.currentPrice*info.quantity)}
-                                {/* </form> */}
+                                //         <br />
+                                //         ListID: {info.listID}
+                                //         <br />
+                                //         CardID: {info.id}
+                                //     </li>
+                                    
+                                // </ul>
+                            )
+                        })
+                    }
+                </table>
 
-                                <br />
-                                ListID: {info.listID}
-                                <br />
-                                CardID: {info.id}
-                            </li>
-                            
-                        </ul>
-                    )
-                })
-            }
-
-            <div>Total cost of list: {
-                cards === undefined
-                ?
-                ''
-                :
-                formatter.format(cards.reduce(
-                    (accumulator, currentValue) => accumulator + (currentValue.currentPrice*currentValue.quantity),
-                    0,
-                ))
-            }
+                <br />
+            
             </div>
+
             
             
         </>
