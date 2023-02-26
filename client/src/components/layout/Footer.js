@@ -4,9 +4,6 @@ import './Footer.css'
 
 import { FaGithub, FaLinkedin, FaFingerprint } from 'react-icons/fa'
 
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-
 const Footer = () => {
   return (
     <>

@@ -12,7 +12,6 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
     const [cards, setCards] = useState([])
     const [total, setTotal] = useState()
     const [imgPreview, setImgPreview] = useState("")
-    const [open, setOpen] = useState(false)
 
     const fetchText = async (text) => {
         let url = `https://api.scryfall.com/cards/named?fuzzy=${text}`
@@ -87,17 +86,10 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
 
         console.log(imgPreview)
 
-        // return (
-        //     <>
-        //         <img src={imgPreview} />
-        //     </>
-        // )
-
     }
 
     return (
         <>
-            {/* <br /><br /> */}
 
             {/* The ListID : {listID} */}
 
@@ -161,32 +153,6 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
                                         <td>{formatter.format(info.currentPrice*info.quantity)}</td>
                                     </tr>
                                 </tbody>
-                                // <ul key={info.id}>
-                                //     <li>
-                                //         Card Name: <Link to={`/card-info/${info.cardName}`} className="card-link">{info.cardName}</Link>
-                                //         {' '}
-                                //         <button className='btn btn-danger' onClick={() => deleteCard(info.id)}>Delete</button>
-                                //         <br /> 
-                                //         Price when added: {formatter.format(info.addedPrice)} 
-                                //         <br /> 
-                                //         Current price: {formatter.format(info.currentPrice)} 
-                                //         <br /> 
-                                //         {/* <form> */}
-                                //             {/* Quantity: <input type='number' placeholder={info.quantity}  onChange={(e) => setQuantity(e.target.value)} disabled={disableButton} /> */}
-                                //         Quantity: {info.quantity} 
-                                //         {' '}
-                                //         <EditQuantity info={info} />
-                                //         <br />
-                                //         Total of current price: {formatter.format(info.currentPrice*info.quantity)}
-                                //         {/* </form> */}
-
-                                //         <br />
-                                //         ListID: {info.listID}
-                                //         <br />
-                                //         CardID: {info.id}
-                                //     </li>
-                                    
-                                // </ul>
                             )
                         })
                     }
@@ -196,8 +162,6 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
             
             </div>
 
-            
-            
         </>
     )
 }

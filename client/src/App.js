@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import Random from './components/Random'
-import Search from './components/Search'
-// import Signin from './components/auth/Signin'
 import SigninAndSignup from './components/auth/SigninAndSignup'
 
 const App = () => {
 
-  const [searchInput, setSearchInput] = useState("")
-  const [submittedSearchInput, setSubmittedSearchInput] = useState("")
   const [homeDisplay, setHomeDisplay] = useState(0)
 
   const displayUserProfile = async() => {
@@ -19,54 +13,12 @@ const App = () => {
                 "authorization": localStorage.token
             }
         })
-        console.log("the username data", data)
-        console.log("response code", data.status)
+        // console.log("the username data", data)
+        // console.log("response code", data.status)
         setHomeDisplay(data.status)
     } catch (error) {
         console.log("the error", error.response.status)
     }
-  }
-
-  const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const fetchInput = async () => {
-  //     await fetch(`https://api.scryfall.com/cards/named?fuzzy=${submittedSearchInput}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       // console.log(data.image_uris.small)
-  //     })
-
-  //   }
-  //   fetchInput();
-  // }, [submittedSearchInput.type])
-  
-
-  // useEffect(() => {
-
-  //   const fetchInput = async () => {
-  //     let url = `https://api.scryfall.com/cards/named?fuzzy=${searchInput}`
-
-  //     let results = await fetch(url);
-
-  //     let data = await results.json();
-  //     console.log(data.image_uris)
-
-  //     setSearchInput(data.Search)
-  //   }
-
-  //   fetchInput();
-  // }, [])
-
-  const fetchInput = async () => {
-    let url = `https://api.scryfall.com/cards/named?fuzzy=${searchInput}`
-
-    let results = await fetch(url);
-
-    let data = await results.json();
-    console.log(data)
-
-    setSearchInput(data.Search)
   }
 
   const updatePrice = async(id, currentPrice) => {
@@ -86,7 +38,7 @@ const App = () => {
   const allCardsInDB = async () => {
     try {
       const data = await axios.get("/cardAll")
-      console.log(data)
+      // console.log(data)
 
       for (let i = 0; i < data.data.length; i++) {
           fetch(`https://api.scryfall.com/cards/named?fuzzy=${data.data[i].cardName}`)
@@ -103,7 +55,7 @@ const App = () => {
     }
   }
 
-  console.log("date", new Date().toLocaleDateString())
+  // console.log("date", new Date().toLocaleDateString())
 
   const checkIfNextDay = () => {
     
@@ -123,38 +75,10 @@ const App = () => {
     alert("It's a new day, and the price of cards has updated!");
   }
 
-  // useEffect(() => {
-  //   console.log(searchInput)
-  // }, [])
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // setSubmittedSearchInput(searchInput)
-    fetchInput(searchInput)
-    console.log(searchInput)
-
-    navigate(`/card-info/${searchInput}`)
-
-  }
-
   useEffect(() => {
     displayUserProfile()
     refreshAtMidnight()
   }, [])
-
-  // return (
-  //   <>
-  //     <div>
-          
-  //         {/* <form onSubmit={handleSubmit}>
-  //             <input type="text" value={searchInput} onChange={(e)=> setSearchInput(e.target.value)} />
-  //             <input type="submit" />
-  //         </form> */}
-  //         <Search />
-  //         <Random />
-  //     </div>
-  //   </>
-  // )
 
   if (homeDisplay === 0) {
     return (
@@ -166,13 +90,6 @@ const App = () => {
     return (
       <>
         <div>
-            
-            {/* <form onSubmit={handleSubmit}>
-                <input type="text" value={searchInput} onChange={(e)=> setSearchInput(e.target.value)} />
-                <input type="submit" />
-            </form> */}
-            {/* <Search />
-            <Random /> */}
             Welcome!
         </div>
       </>

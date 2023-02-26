@@ -69,7 +69,7 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
         
         setListID(selectedList)
 
-        console.log("listID is: ", listID)
+        // console.log("listID is: ", listID)
 
     }
 
@@ -87,7 +87,7 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
             listID: listID
         }) 
 
-        console.log(submitCard)
+        // console.log(submitCard)
 
         if(submitCard.status === 200){
             alert("This card was submitted to your list!")
@@ -103,13 +103,6 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
 
   return (
     <>
-
-        {/* {cardName}
-        <br />
-        {addedPrice}
-        <br />
-        {currentPrice}
-        <br /><br /> */}
 
         <br />
 

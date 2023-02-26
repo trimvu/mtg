@@ -9,6 +9,7 @@ const EditListname = ({ info }) => {
 
     // console.log("info", info)
     const [listname, setListname] = useState(info.listname)
+    const [listID, setListID] = useState(info.id)
     const [show, setShow] = useState(false);
 
     // console.log(listname)
@@ -25,7 +26,7 @@ const EditListname = ({ info }) => {
             })
 
             // setCards(cards.map(card => (card.id === cards.id ? { ...card, quantity: cards.quantity } : card)))
-            window.location = `/list-info/${listname}`
+            window.location = `/list-info/${listID}/${listname}`
             handleClose()
         } catch (error) {
             console.log(error)

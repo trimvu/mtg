@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -6,9 +6,9 @@ import Modal from 'react-bootstrap/Modal';
 import { FaEdit } from 'react-icons/fa'
 
 const EditQuantity = ({ info }) => {
+
     // console.log("info", info)
-    // console.log("cards", cards)
-    const [cards, setCards] = useState(info)
+
     const [quantity, setQuantity] = useState(info.quantity)
     const [show, setShow] = useState(false);
 
@@ -19,7 +19,6 @@ const EditQuantity = ({ info }) => {
     const editQuantity = async(e) => {
         e.preventDefault();
         try {
-            // const body = { quantity }
             if (quantity > 0) {
                 const edit = await axios.put(`/card/${info.id}`, {
                     quantity
@@ -38,13 +37,8 @@ const EditQuantity = ({ info }) => {
         }
     }
 
-    // const makeEdit = (card) => {
-    //     setCards(prevCards => preCards)
-    // }
-
     return (
         <>
-            {/* EditQuantity */}
       <Button variant="warning" onClick={handleShow}>
         <FaEdit className="icons" size={25} />
       </Button>
