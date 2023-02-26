@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { signIn } from '../../actions'
@@ -11,6 +11,7 @@ const Signin = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,34 +34,30 @@ const Signin = () => {
 
         <form onSubmit={handleSubmit} className="">
 
-            <div className="user-box">
+            <div className="user-box input-field">
               <input type="email" value={email} 
               onChange={e=>setEmail(e.target.value)}
                 required/>
               <label>E-mail</label>
             </div>
 
-            <div className="user-box">
+            <br />
+
+            <div className="user-box input-field">
               <input type="password" value={password} 
               onChange={e=>setPassword(e.target.value)}
                 required/>
               <label>Password</label>
             </div>
 
-            <a href="">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+            <br />
+
+
               <div className="">
                 <input type="submit" value="Log In" />
               </div>
-            </a>
-            
 
         </form>
-
-        <p>Don't have an account? <Link to="/signup">Register Here</Link></p>
 
       </div>
 

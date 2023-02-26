@@ -7,6 +7,12 @@
     width: 99%;
     margin-left: auto;
     margin-right: auto;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .list-card-table > table > tbody > tr > td,
@@ -25,7 +31,8 @@
 } */
 
 .list-card-table > table > thead > tr > th[scope='col'] {
-    background-color: #00452c;
+    /* background-color: #00452c; */
+    background-color: rgba(194,159,55,1);
     color: white;
 }
 
@@ -51,7 +58,8 @@
 }
 
 .card-link-color:hover {
-    color: #00452c;
+    /* color: #00452c; */
+    color: rgba(194,159,55,1);
 }
 
 .cen-list {
@@ -63,6 +71,12 @@
     border-radius: 20px;
     text-align: center;
     justify-content: center;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .cen-total {
@@ -73,10 +87,42 @@
     border-style: solid;
     border-radius: 20px;
     text-align: center;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .contain-list {
     display: flex;
+}
+
+.preview-card:hover {
+        position: relative;
+}
+
+.preview-card:hover:after {
+    content: url("https://cards.scryfall.io/large/front/f/6/f6372fa0-e9c8-45d0-a3b8-72eb191c6b26.jpg?1562804685"); /* no need for qoutes */
+    display: block;
+    position: absolute;
+    left: 123px; /* change this value to one that suits you */
+    top: 56px; /* change this value to one that suits you */
+}
+
+.card-preview {
+    display: none;
+    /* border: 1px solid #000; */
+    /* height: 30px;
+    width: 290px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-link-color:hover + .card-preview {
+    display: inline;
+    position: absolute;
 }
 
 @media (max-width: 800px) {

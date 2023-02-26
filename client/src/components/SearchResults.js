@@ -64,29 +64,43 @@ const SearchResults = () => {
         <>
             <br />
 
-            <div className='full-results'>
-                {
-                    searchResult === undefined
-                    ?
-                    ''
-                    :
-                    searchResult.map(info => {
-                        return (
-                            // <ul key={info.name}>
-                            //     <img src={`${info.image_uris.normal}`} alt="react logo" style={{ width: '200px', }}/>
-                            //     <br />
-                            //     <Link to={`/card-info/${info.name}`}>{info.name}</Link>
-                            // </ul>
-                                <Card className='full-cards' key={info.name}>
-                                    <Card.Img variant="top" src={`${info.image_uris.normal}`} />
-                                    <Card.Body>
-                                        <Card.Title style={{ textAlign: 'center' }}><Link to={`/card-info/${info.name}`}>{info.name}</Link></Card.Title>
-                                    </Card.Body>
-                                </Card>
-                        )
-                    })
-                }
+            <div className='cen-search'>
+                <br />
+                <h2>Search Result(s) for: </h2>
+                <h1>{search}</h1>
+                <br />
             </div>
+
+            <br />
+
+            <div className='contain-res'>
+                <br />
+                <div className='full-results'>
+                    {
+                        searchResult === undefined
+                        ?
+                        ''
+                        :
+                        searchResult.map(info => {
+                            return (
+                                // <ul key={info.name}>
+                                //     <img src={`${info.image_uris.normal}`} alt="react logo" style={{ width: '200px', }}/>
+                                //     <br />
+                                //     <Link to={`/card-info/${info.name}`}>{info.name}</Link>
+                                // </ul>
+                                    <Card className='full-cards' key={info.name}>
+                                        <Card.Img variant="top" src={`${info.image_uris.normal}`} />
+                                        <Card.Body>
+                                            <Card.Title style={{ textAlign: 'center' }}><Link to={`/card-info/${info.name}`}>{info.name}</Link></Card.Title>
+                                        </Card.Body>
+                                    </Card>
+                            )
+                        })
+                    }
+                </div>
+                <br /><br />
+            </div>
+            <br />
         </>
     )
 }
