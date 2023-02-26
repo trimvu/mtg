@@ -161,7 +161,7 @@ const Card = () => {
             
             <div className='right'>
               <br />
-              <img src={cardInfo.image_uris.normal} />
+              <img className='right-img' src={cardInfo.image_uris.normal} />
               <br />
             </div>
           </div>

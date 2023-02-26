@@ -6,6 +6,12 @@
     width: 99%;
     margin-left: auto;
     margin-right: auto;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .list-table {
@@ -17,6 +23,12 @@
     width: 99%;
     margin-left: auto;
     margin-right: auto;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .list-table > table > tbody > tr > td,
@@ -35,7 +47,8 @@
 } */
 
 .list-table > table > thead > tr > th[scope='col'] {
-    background-color: #00452c;
+    /* background-color: #00452c; */
+    background-color: rgba(194,159,55,1);
     color: white;
 }
 
@@ -53,6 +66,12 @@
     margin-right: auto;
     width: 55vw;
     text-align: center;
+
+    background: rgba(255, 255, 255, 0.25);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .prof-link-color {
@@ -61,7 +80,8 @@
 }
 
 .prof-link-color:hover {
-    color: #00452c;
+    /* color: #00452c; */
+    color: rgba(194,159,55,1);
 }
 
 .align-update-delete > table {

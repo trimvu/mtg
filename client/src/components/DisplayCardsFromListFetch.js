@@ -11,6 +11,20 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
 
     const [cards, setCards] = useState([])
     const [total, setTotal] = useState()
+    const [imgPreview, setImgPreview] = useState("")
+    const [open, setOpen] = useState(false)
+
+    const fetchText = async (text) => {
+        let url = `https://api.scryfall.com/cards/named?fuzzy=${text}`
+    
+        let results = await fetch(url);
+    
+        let data = await results.json();
+        // console.log(data)
+
+        setImgPreview(data.image_uris.small)
+    
+    }
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -63,9 +77,23 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
 
         getCards()
 
-        
-
     }, [listID])
+
+    const handleOver = (e) => {
+
+        // console.log(e.target.text)
+
+        fetchText(e.target.text)
+
+        console.log(imgPreview)
+
+        // return (
+        //     <>
+        //         <img src={imgPreview} />
+        //     </>
+        // )
+
+    }
 
     return (
         <>
@@ -124,7 +152,7 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
                             return (
                                 <tbody  key={info.id}>
                                     <tr>
-                                        <th scope='row'><Link to={`/card-info/${info.cardName}`} className="card-link-color">{info.cardName}</Link></th>
+                                        <th scope='row'><Link onMouseOver={handleOver} to={`/card-info/${info.cardName}`} className="card-link-color">{info.cardName}</Link><img className='card-preview' alt='card preview' src={imgPreview} /></th>
                                         <td><button className='btn btn-danger' onClick={() => deleteCard(info.id)}><FaTrash className="icons" size={25} /></button></td>
                                         <td>{formatter.format(info.addedPrice)}</td>
                                         <td>{formatter.format(info.currentPrice)}</td>

@@ -19,7 +19,7 @@ const Signup = () => {
     e.preventDefault();
 
     dispatch(signUp({email, username, password}, ()=>{
-      navigate('/')
+      navigate('/profile')
     }))
 
     
@@ -36,41 +36,41 @@ const Signup = () => {
 
             <form onSubmit={handleSubmit} className="form">
 
-              <div className="user-box">
+              <div className="user-box input-field">
                 <input type="email" value={email} 
                 onChange={e=>setEmail(e.target.value)}
-                placeholder="enter email address" 
+                // placeholder="enter email address" 
                 required/>
+                <label>Enter E-mail Address</label>
               </div>
 
-              <div className="user-box">
+              <br />
+
+              <div className="user-box input-field">
                 <input type="name" value={username} 
                 onChange={e=>setUsername(e.target.value)}
-                placeholder="enter name" 
+                // placeholder="enter name" 
                 required/>
+                <label>Enter Name</label>
               </div>
 
-              <div className="user-box">
+              <br />
+
+              <div className="user-box input-field">
                 <input type="password" value={password} 
                 onChange={e=>setPassword(e.target.value)}
-                placeholder="enter password" 
+                // placeholder="enter password"
                 required/>
+                <label>Enter Password</label>
               </div>
 
-              <a href="">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+              <br />
+
                 <div className="">
                   <input type="submit" value="Sign Up" />
                 </div>
-              </a>
-              
 
           </form>
-
-          <p>Already have an account? <Link to="/signin">Log in</Link></p>
 
       </div>
 

@@ -8,5 +8,6 @@
 }
 
 .nav-link-color:hover {
-    color: #00452c;
+    /* color: #00452c; */
+    color: rgba(194,159,55,1);
 }

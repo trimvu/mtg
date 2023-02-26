@@ -27,7 +27,7 @@ const Header = () => {
 
         <Navbar className='nav-bg fixed-top' expand="lg">
           <Container fluid>
-            <Navbar.Brand href="/">Magic: The Gathering Price Tracker</Navbar.Brand>
+            <Navbar.Brand style={{ color : 'rgba(194,159,55,1)'}} href="/">Magic: The Gathering Price Tracker</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
