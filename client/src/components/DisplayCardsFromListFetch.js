@@ -121,6 +121,7 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
 
             <br />
 
+            
             <div className='list-card-table'>
                 <br />
             {
