@@ -61,7 +61,7 @@ const CreateList = () => {
 
         <div className='create-input'>
             <br />
-            <h3 className='text-center'>CreateList</h3>
+            <h3 className='text-center'>Create List</h3>
 
             <div className='create-input-des'>
                 <form className='d-flex mt-5' onSubmit={handleSubmit}>
