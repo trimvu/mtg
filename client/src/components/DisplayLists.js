@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
@@ -9,27 +7,12 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
     // console.log("added price: ", addedPrice)
     // console.log("current price: ", currentPrice)
 
-    // let first = []
-
-    // const userID = useSelector((state) => state.userID)
     const [userID, setUserID] = useState()
-    // const [listID, setListID] = useState({
-    //     firstID: allLists[0]
-    // })
-    const [firstID, setFirstID] = useState()
     const [listID, setListID] = useState()
     const [quantity, setQuantity] = useState(1)
-    // const [cardName, setCardName] = useState()
-    // const [addedPrice, setAddedPrice] = useState(0)
-    // const [currentPrice, setCurrentPrice] = useState(0)
-
-    // console.log("quantity", quantity)
-
-    // setCardName(cardInfo === undefined ? '' : cardInfo.name)
-    
     const [allLists, setAllLists] = useState([])
 
-    const navigate = useNavigate();
+    // console.log("quantity", quantity)
 
     const displayUserID = async() => {
         try {
@@ -87,7 +70,7 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
         
         setListID(selectedList)
 
-        console.log("listID is: ", listID)
+        // console.log("listID is: ", listID)
 
     }
 

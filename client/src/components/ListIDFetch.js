@@ -5,12 +5,9 @@ import DisplayCardsFromListFetch from './DisplayCardsFromListFetch'
 
 const ListIDFetch = ({list}) => {
 
-    // const [listID, setListID] = useState()
     let { id } = useParams();
     // console.log("param id", id)
 
-    // const [allData, setAllData] = useState()
-    // const [lengthOfData, setLengthOfData] = useState(0)
     const [dataIDs, setDataIDs] = useState([])
 
     const viewListFetch = async() => {
@@ -21,21 +18,13 @@ const ListIDFetch = ({list}) => {
             })
     
             // console.log("list fetch data: ", data.data.map(element => element.id))
-            // setListID(data.data[0].id)
-            // setAllData(data.data)
-            setDataIDs(data.data.map(element => element.id))
-            // setLengthOfData(data.data.length)
 
-            // viewListCardsFetch()
+            setDataIDs(data.data.map(element => element.id))
             
         } catch (error) {
             console.log(error)
         }
     }
-
-    // const filterData = () => {
-    //     console.log("all data", allData === undefined ? '' : allData.filter(info => info.id))
-    // }
 
     useEffect(() => {
 
@@ -44,8 +33,6 @@ const ListIDFetch = ({list}) => {
     }, [])
     return (
         <>
-            {/* ListIDFetch */}
-
             {
                 (dataIDs.includes(parseInt(id)) !== true)
                 ?

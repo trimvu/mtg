@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import CreateList from './CreateList'
-import DisplayLists from './DisplayLists'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import EditListname from './EditListname'
 import EditUsername from './EditUsername'
-import Signout from './auth/Signout'
 
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
@@ -16,11 +13,6 @@ import './Profile.css'
 import { FaTrash } from 'react-icons/fa'
 
 const Profile = () => {
-
-  // const username = useSelector((state) => state.username)
-  // console.log(username)
-  // const userID = useSelector((state) => state.userID)
-  // console.log(userID)
 
   const [username, setUsername] = useState()
   const [userID, setUserID] = useState()
@@ -64,7 +56,7 @@ const Profile = () => {
     try {
       const deleteAllCards = await axios.delete(`deleteAllCards/${listID}`)
 
-      console.log("all cards were deleted!")
+      // console.log("all cards were deleted!")
     } catch (error) {
       console.log(error)
     }
@@ -76,7 +68,7 @@ const Profile = () => {
         const deleteList = await axios.delete(`/list/${id}`)
         
         setAllLists(allLists.filter(list => list.id !== id))
-        console.log('list deleted')
+        // console.log('list deleted')
     } catch (error) {
         console.log(error)
     }
@@ -197,15 +189,6 @@ const Profile = () => {
                 :
                 allLists.sort((a, b) => a.id - b.id).map(info => {
                   return (
-                    // <ul key={info.id}>
-                      //   <li value={info.listname}>
-                      //       <Link to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link>
-                      //       {' '}
-                      //       <EditListname info={info} />
-                      //       {' '}
-                      //       <button className='btn btn-danger' onClick={() => deleteList(info.id)}>Delete List</button>
-                      //   </li>
-                      // </ul>
                     <tbody key={info.id}>
                       <tr>
                         <th scope='row'><Link className='prof-link-color' to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link></th>
@@ -215,7 +198,6 @@ const Profile = () => {
                     </tbody>
                     )
                 })
-
               }
           </table>
           <br />

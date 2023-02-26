@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { signUp } from '../../actions/index'
 import { useNavigate } from 'react-router-dom'
 // import './Signin.css'

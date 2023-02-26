@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,11 +8,8 @@ const CreateList = () => {
 
     const [listname, setListname] = useState("");
 
-    const [allLists, setAllLists] = useState([])
-
     const navigate = useNavigate()
-    
-    // const userID = useSelector((state) => state.userID)
+
     const [userID, setUserID] = useState()
     // console.log(userID)
 
@@ -32,16 +28,8 @@ const CreateList = () => {
     }
 
     const createList = async() => {
-        console.log(listname)
+        // console.log(listname)
         try {
-            // const body = { listname }
-            // const data = await fetch('/list', {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify(body)
-            // })
-            
-            // const body = { listname }
             const data = await axios.post('/list', {
                 listname,
                 userID
@@ -55,21 +43,6 @@ const CreateList = () => {
             console.log(error)
         }
     }
-
-    // const displayListsFetch = async() => {
-
-    //     try {
-    //         const data = await axios.get('/list', {
-    //             userID
-    //         })
-
-    //         // console.log(data.data)
-            
-    //         setAllLists(data.data)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -100,25 +73,6 @@ const CreateList = () => {
         </div>
 
         <br />
-
-        {/* <h2>User's Lists: </h2>
-
-        <form className='d-flex mt-5'>
-            <label>Choose a list: </label>
-            <select>
-                {
-                    allLists.map(info => {
-                        return (
-                            <option value={info.listname}>
-                                {info.listname}
-                            </option>
-                        )
-                    })
-                }
-            </select>
-        </form> */}
-
-
     </>
   )
 }

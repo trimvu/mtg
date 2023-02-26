@@ -46,16 +46,6 @@ const SigninAndSignup = () => {
         setUpArt(data.artist)
     }
 
-    const signUpButton = () => {
-        setTogglePanel(true);
-        fetchSignupCard()
-    }
-
-    const signInButton = () => {
-        setTogglePanel(false)
-        fetchSigninCard()
-    }
-
     const handleClick = (e) => {
         e.preventDefault();
         if (togglePanel === true) {
@@ -94,12 +84,8 @@ const SigninAndSignup = () => {
                                 <p><b>Card: </b>{inCard}</p>
                                 <p><b>Artist: </b>{inArt}</p>
                             </div>
-                            // "dk"
                         }
                     </div>
-                    {/* <div className='up-div'>
-                        <Signup />
-                    </div> */}
                 </div>
                 <div className='switch-in-up'>
                     <button onClick={handleClick}>Click Here to Register</button>

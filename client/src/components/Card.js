@@ -1,19 +1,13 @@
-import axios from 'axios'
+
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import AddCards from './AddCard'
-import DisplayLists from './DisplayLists'
-import Random from './Random'
-import Search from './Search'
 
 import './Card.css'
-
 
 const Card = () => {
 
   const [cardInfo, setCardInfo] = useState()
-  const [userList, setUserList] = useState()
-  // const [quantity, setQuantity] = useState("")
   const [cardName, setCardName] = useState()
   const [addedPrice, setAddedPrice] = useState(0)
   const [currentPrice, setCurrentPrice] = useState(0)
@@ -26,7 +20,7 @@ const Card = () => {
 
     const data = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${card}`)
     const details = await data.json();
-    console.log("cardInfo: ", details);
+    // console.log("cardInfo: ", details);
     setCardInfo(details);
     setCardName(details.name);
     setAddedPrice(details.prices.usd);
@@ -34,18 +28,6 @@ const Card = () => {
     setLegalities(details.legalities)
 
   }
-
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
-
-    
-  //   const addCard = await axios.post('/card', {
-  //     cardName : card,
-  //     addedPrice,
-  //     quantity,
-  //     currentPrice
-  //   })
-  // }
 
   useEffect(() => {
 
@@ -79,10 +61,6 @@ const Card = () => {
                 <span className='sec-span'><b>Release Date: </b>{cardInfo.released_at}</span>
               </div>
               <br /><br />
-              {/* <tr>
-                <th></th>
-                <th></th>
-              </tr> */}
               <table>
                 <thead>
                   <tr>
@@ -166,13 +144,6 @@ const Card = () => {
             </div>
           </div>
         }
-
-        {/* <form>
-          <label>How many would you like to add?<input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} /></label>
-          
-          <button>Add to list</button>
-          
-        </form> */}
     </>
   )
 }

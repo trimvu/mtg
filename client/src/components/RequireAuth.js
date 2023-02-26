@@ -26,6 +26,3 @@ const RequireAuth = (props) => {
 }
 
 export default RequireAuth
-
-
-// <RequireAuth>  <Feature />  </RequireAuth>
