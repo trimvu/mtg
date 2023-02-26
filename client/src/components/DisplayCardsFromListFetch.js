@@ -123,6 +123,9 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
 
             <div className='list-card-table'>
                 <br />
+            {
+                cards.length > 0
+                ?
                 <table>
                     <thead>
                         <tr>
@@ -157,6 +160,9 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
                         })
                     }
                 </table>
+                :
+                <div style={{ textAlign : 'center' }}>'Add cards to view here'</div>
+            }
 
                 <br />
             

@@ -176,32 +176,38 @@ const Profile = () => {
 
         <div className='list-table'>
         <br />
-          <table>
-            <thead>
-              <tr>
-                <th scope='col'>List Name</th>
-                <th scope='col'>Edit</th>
-                <th scope='col'>Delete</th>
-              </tr>
-            </thead>
-            {
-              allLists === undefined
-                ?
-                ''
-                :
-                allLists.sort((a, b) => a.id - b.id).map(info => {
-                  return (
-                    <tbody key={info.id}>
-                      <tr>
-                        <th scope='row'><Link className='prof-link-color' to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link></th>
-                        <td><EditListname info={info} /></td>
-                        <td><button className='btn btn-danger' onClick={() => deleteList(info.id)}><FaTrash className="icons" size={25} /></button></td>
-                      </tr>
-                    </tbody>
-                    )
-                })
-              }
-          </table>
+          {
+            allLists.length > 0
+            ?
+            <table>
+              <thead>
+                <tr>
+                  <th scope='col'>List Name</th>
+                  <th scope='col'>Edit</th>
+                  <th scope='col'>Delete</th>
+                </tr>
+              </thead>
+              {
+                allLists === undefined
+                  ?
+                  ''
+                  :
+                  allLists.sort((a, b) => a.id - b.id).map(info => {
+                    return (
+                      <tbody key={info.id}>
+                        <tr>
+                          <th scope='row'><Link className='prof-link-color' to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link></th>
+                          <td><EditListname info={info} /></td>
+                          <td><button className='btn btn-danger' onClick={() => deleteList(info.id)}><FaTrash className="icons" size={25} /></button></td>
+                        </tr>
+                      </tbody>
+                      )
+                  })
+                }
+            </table>
+            :
+            <div style={{ textAlign : 'center' }}>'Create lists to view here'</div>
+          }
           <br />
         </div>
     </>
