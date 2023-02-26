@@ -25,11 +25,9 @@ const Header = () => {
                 style={{ maxHeight: '100px' }}
                 navbarScroll
               >
-                <Nav.Link><Link className='nav-link-color' to='/'>Home</Link></Nav.Link>
-                <Nav.Link><Link className='nav-link-color' to="/profile">Profile</Link></Nav.Link>
-                <Nav.Link>
-                  <Link className='nav-link-color' to="/"><Signout /></Link>
-                </Nav.Link>
+                <Link className='nav-link-color' to='/'>Home</Link>
+                <Link className='nav-link-color' to="/profile">Profile</Link>
+                <Link className='nav-link-color' to="/"><Signout /></Link>
               </Nav>
                 <Search />
               <Form className="d-flex">

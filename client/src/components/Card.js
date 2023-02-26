@@ -57,7 +57,7 @@ const Card = () => {
                 <span><b>Type: </b>{cardInfo.type_line}</span>
                 <span className='sec-span'><b>Rarity: </b>{cardInfo.rarity}</span>
                 <p className='to-br'>{cardInfo.oracle_text}<br /><i>{cardInfo.flavor_text}</i></p>
-                <span><b>Current Cost: </b>${cardInfo.prices.usd} USD</span>
+                <span><b>Current Cost: </b>{currentPrice === null ? 'n/a' : <span>${currentPrice} USD</span>}</span>
                 <span className='sec-span'><b>Release Date: </b>{cardInfo.released_at}</span>
               </div>
               <br /><br />
