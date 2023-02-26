@@ -84,7 +84,7 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
 
         fetchText(e.target.text)
 
-        console.log(imgPreview)
+        // console.log(imgPreview)
 
     }
 
@@ -146,11 +146,11 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
                                     <tr>
                                         <th scope='row'><Link onMouseOver={handleOver} to={`/card-info/${info.cardName}`} className="card-link-color">{info.cardName}</Link><img className='card-preview' alt='card preview' src={imgPreview} /></th>
                                         <td><button className='btn btn-danger' onClick={() => deleteCard(info.id)}><FaTrash className="icons" size={25} /></button></td>
-                                        <td>{formatter.format(info.addedPrice)}</td>
-                                        <td>{formatter.format(info.currentPrice)}</td>
+                                        <td>{info.addedPrice === null ? 'n/a' : formatter.format(info.addedPrice)}</td>
+                                        <td>{info.currentPrice === null ? 'n/a' : formatter.format(info.currentPrice)}</td>
                                         <td>{info.quantity}</td>
                                         <td><EditQuantity info={info} /></td>
-                                        <td>{formatter.format(info.currentPrice*info.quantity)}</td>
+                                        <td>{info.currentPrice === null ? 'n/a' : formatter.format(info.currentPrice*info.quantity)}</td>
                                     </tr>
                                 </tbody>
                             )

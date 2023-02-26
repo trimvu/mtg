@@ -147,22 +147,24 @@ const Profile = () => {
           <br />
           <div className='align-update-delete'>
             <table>
-              <tr>
-                <td><EditUsername userInfo={userInfo} /></td>
-                <td>Update Name</td>
-              </tr>
-              <tr>
-                <td>
-                  {
-                    userID === undefined
-                    ?
-                    ''
-                    :
-                    <button className='btn btn-danger' onClick={handleDeleteUser}><FaTrash className="icons" size={25} /></button>
-                  }
-                </td>
-                <td>Delete User</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td><EditUsername userInfo={userInfo} /></td>
+                  <td>Update Name</td>
+                </tr>
+                <tr>
+                  <td>
+                    {
+                      userID === undefined
+                      ?
+                      ''
+                      :
+                      <button className='btn btn-danger' onClick={handleDeleteUser}><FaTrash className="icons" size={25} /></button>
+                    }
+                  </td>
+                  <td>Delete User</td>
+                </tr>
+              </tbody>
             </table>
 
             <br /><br />

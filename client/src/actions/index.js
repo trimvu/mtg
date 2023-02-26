@@ -57,7 +57,7 @@ export const signIn = (formData, cb) => async dispatch => {
 
         let response = await axios.post('/login', formData)
 
-        console.log("action user login", response)
+        // console.log("action user login", response)
 
         dispatch({
             type: actionTypes.AUTH_USER,
@@ -142,7 +142,7 @@ export const lists = () => async dispatch => {
 
         let response = await axios.get('/list')
 
-        console.log("action user login", response)
+        // console.log("action user login", response)
 
         dispatch({
             type: actionTypes.AUTH_USER,

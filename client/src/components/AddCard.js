@@ -107,11 +107,19 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
         <br />
 
         {
-            userID === undefined
+            (userID === undefined)
             ?
             <div className='add-card-div'>
                 <br />
                 'Register and sign in to create lists to add cards!'
+                <br /><br />
+            </div>
+            :
+            (allLists.length === 0)
+            ?
+            <div className='add-card-div'>
+                <br />
+                'Please create a list before adding cards'
                 <br /><br />
             </div>
             :
