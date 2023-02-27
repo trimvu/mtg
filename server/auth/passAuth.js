@@ -13,7 +13,7 @@ const bcrypt = require('bcryptjs');
 
 // secret file for JWT
 
-const secrets = require('../secrets');
+// const secrets = require('../secrets');
 
 
 /**
@@ -84,7 +84,7 @@ passport.use(localLogin)
 
 let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-    secretOrKey: secrets.secrets,
+    secretOrKey: process.env.AUTH_SECRETS,
 }
 
 let jwtLogin = new JwtStrategy(jwtOptions, async (payload, done)=>{ // payload = {sub, iat, secrets}

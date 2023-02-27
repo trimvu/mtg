@@ -1,0 +1,20 @@
+{
+  "name": "mtg",
+  "version": "1.0.0",
+  "description": "<h1>Tri's MTG Price Tracker<h1>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-prebuild": "cd client && npm install && npm run-script build && mv build ../server/public && cd ../server && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trimvu/mtg.git"
+  },
+  "author": "Tri Vu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trimvu/mtg/issues"
+  },
+  "homepage": "https://github.com/trimvu/mtg#readme"
+}
