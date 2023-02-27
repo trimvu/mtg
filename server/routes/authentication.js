@@ -4,7 +4,7 @@ const jwt = require('jwt-simple'); // allows us to create a jwt token
 const db = require('../models') // access to all db models
 const bcrypt = require('bcryptjs'); // used to encrypt passwords
 
-const secrets = require('../secrets'); // secrets object inside of secrets.js file in root directory
+// const secrets = require('../secrets'); // secrets object inside of secrets.js file in root directory
 
 const passport = require('passport');
 
@@ -29,7 +29,7 @@ const token = (userRecord) => {
     
     let timestamp = new Date().getTime(); // current time
 
-    return jwt.encode({sub: userRecord.id, iat: timestamp}, secrets.secrets) // first argument is the payload, second argument is secret
+    return jwt.encode({sub: userRecord.id, iat: timestamp}, process.env.AUTH_SECRETS) // first argument is the payload, second argument is secret
 
 }
 
