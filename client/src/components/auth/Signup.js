@@ -3,12 +3,16 @@ import { useDispatch } from 'react-redux'
 import { signUp } from '../../actions/index'
 import { useNavigate } from 'react-router-dom'
 // import './Signin.css'
+import { useSelector } from "react-redux";
 
 const Signup = () => {
 
   const [email, setEmail] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+
+  const auth = useSelector(state => state.auth)
+  // console.log(auth)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -67,6 +71,13 @@ const Signup = () => {
 
                 <div className="">
                   <input type="submit" value="Sign Up" />
+                  {
+                    auth === 422
+                    ?
+                    <div>'E-mail already exists'</div>
+                    :
+                    ''
+                  }
                 </div>
 
           </form>

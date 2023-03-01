@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+import CreateList from './CreateList'
+import EditListname from './EditListname'
 
-const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
+import { FaTrash } from 'react-icons/fa'
 
-    // console.log("card name: ", cardName)
-    // console.log("added price: ", addedPrice)
-    // console.log("current price: ", currentPrice)
+const DisplayLists = () => {
 
+    const [username, setUsername] = useState()
     const [userID, setUserID] = useState()
-    const [listID, setListID] = useState()
-    const [quantity, setQuantity] = useState(1)
     const [allLists, setAllLists] = useState([])
+    const [userInfo, setUserInfo] = useState()
 
-    // console.log("quantity", quantity)
-
-    const displayUserID = async() => {
+    const displayUserProfile = async() => {
         try {
             const data = await axios.get('/profileInfo', {
                 headers: {
@@ -22,7 +21,9 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
                 }
             })
             // console.log("the username data", data)
+            setUsername(data.data[0].username)
             setUserID(data.data[0].id)
+            setUserInfo(data.data[0])
         } catch (error) {
             console.log(error)
         }
@@ -34,14 +35,34 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
             const data = await axios.post('/allList', {
                 userID
             })
-
+    
             // console.log(data.data)
-
+    
             // window.location = '/profile';
             
             setAllLists(data.data)
-            setListID(data.data[0].id)
-            // console.log("first", data.data[0].id)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteAllCardsFromList = async(listID) => {
+        try {
+            const deleteAllCards = await axios.delete(`deleteAllCards/${listID}`)
+    
+          // console.log("all cards were deleted!")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+    const deleteList = async(id) => {
+        try {
+            deleteAllCardsFromList(id)
+            const deleteList = await axios.delete(`/list/${id}`)
+            
+            setAllLists(allLists.filter(list => list.id !== id))
+            // console.log('list deleted')
         } catch (error) {
             console.log(error)
         }
@@ -49,100 +70,70 @@ const DisplayLists = ({ cardName, addedPrice, currentPrice }) => {
 
     useEffect(() => {
 
-        displayUserID();
+        displayUserProfile()
 
-    }, [])
-
-    useEffect(() => {
-
-        async function showLists() {
-            await displayListsFetch()
-        }
-
-        showLists()
-
-    }, [userID])
-
-    const handleChange = (e) => {
-        e.preventDefault();
-
-        const selectedList = e.target.value
-        
-        setListID(selectedList)
-
-        // console.log("listID is: ", listID)
-
-    }
-
-    const handleSubmit = async (e) => {
-
-        e.preventDefault();
-        // setUserInput(textValue)
-        // console.log("handle submit data: ", userID, number, scamValue, textValue)
-
-        const submitCard = await axios.post('/card', {
-            cardName: cardName,
-            addedPrice: addedPrice,
-            quantity,
-            currentPrice: currentPrice,
-            listID: listID
-        }) 
-
-        console.log(submitCard)
-
-        if(submitCard.status === 200){
-            alert("Your information was submitted!")
-            window.location.reload();
-        }
-        else {
-            alert("Sorry! Your information was NOT submitted.")
+        if (!userID) return;
+        console.log("getting id")
+    
+        async function displayList() {
+            displayListsFetch();
         }
     
-    }
+        displayList()
+    
+      }, [userID])
 
-    // console.log(listname)
-
-  return (
+return (
     <>
+    <br />
+        <div className='user-prof'>
+            <br />
+            <h1>{username}'s Collection</h1>
+            <br />
+        </div>
 
-        {cardName}
         <br />
-        {addedPrice}
+        <CreateList />
+
+        <div className='list-table'>
         <br />
-        {currentPrice}
-        <br /><br />
-
-        {
-            userID === undefined
-            ?
-            <div>'Register and sign in to create lists to add cards!'</div>
-            :
-            <div>
-                <h2>User's Lists: </h2>
-                <form className='d-flex mt-5' onSubmit={handleSubmit}>
-                    <label>Choose a list: </label>
-                    <select defaultValue={listID} onChange={handleChange}>
-                        {
-                            allLists.map(info => {
-                                return (
-                                    <option key={info.id} value={info.id} listname={info.id}>
-                                        {info.listname}
-                                        {/* {info.listname} */}
-                                    </option>
-                                )
-                            })
-                        }
-                    </select>
-                    <label>How many would you like to add?<input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} required /></label>
-                    
-                    <button>Add to list</button>
-                </form>
-            </div>
-        }
-
-        {listID}
+            {
+                allLists.length > 0
+                ?
+                <table>
+                <thead>
+                    <tr>
+                    <th scope='col'>List Name</th>
+                    <th scope='col'>Edit</th>
+                    <th scope='col'>Delete</th>
+                    </tr>
+                </thead>
+                {
+                    allLists === undefined
+                    ?
+                    ''
+                    :
+                    allLists.sort((a, b) => a.id - b.id).map(info => {
+                        return (
+                        <tbody key={info.id}>
+                            <tr>
+                            <th scope='row'><Link className='prof-link-color' to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link></th>
+                            <td><EditListname info={info} /></td>
+                            <td><button className='btn btn-danger' onClick={() => deleteList(info.id)}><FaTrash className="icons" size={25} /></button></td>
+                            </tr>
+                        </tbody>
+                        )
+                    })
+                    }
+                </table>
+                :
+                <div style={{ textAlign : 'center' }}>'Create lists to view here'</div>
+            }
+        <br />
+        </div>
+        <br />
     </>
-  )
+)
 }
 
 export default DisplayLists

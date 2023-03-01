@@ -77,7 +77,7 @@ router.post('/register', async (req, res) => {
 
             // return our jwt
 
-            return res.json({token: jwtToken})
+            return res.status(222).json({token: jwtToken})
         }
         else{
             // user's email already exists in our db, so send back an error message to react
@@ -140,6 +140,20 @@ router.put('/editUsername/:id', async(req, res) => {
         res.json("Name / Username was updated!");
     } catch (err) {
         return res.status(424).json({error: "Can't find database //update a username"})
+    }
+})
+
+router.put('/editPassword/:id', async (req, res) => {
+    let password = req.body.password;
+    try {
+        password = bcrypt.hashSync(password , 8)
+        const id = req.params.id;
+        // console.log("password", password)
+        const updatePassword = await db.users.update({ password: password }, {where: {id: id}})
+
+        res.json("Password was updated!")
+    } catch (error) {
+        return res.status(424).json({error: "Can't find database //update a password"})
     }
 })
 

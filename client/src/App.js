@@ -17,7 +17,7 @@ const App = () => {
         // console.log("response code", data.status)
         setHomeDisplay(data.status)
     } catch (error) {
-        console.log("the error", error.response.status)
+        // console.log(error.response.data)
     }
   }
 
@@ -72,7 +72,7 @@ const App = () => {
     if( !checkIfNextDay() ) return false;
   
     allCardsInDB()
-    alert("It's a new day, and the price of cards has updated!");
+    console.log("It's a new day, and the price of cards has updated!");
   }
 
   useEffect(() => {
