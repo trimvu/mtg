@@ -26,7 +26,8 @@ const EditListname = ({ info }) => {
             })
 
             // setCards(cards.map(card => (card.id === cards.id ? { ...card, quantity: cards.quantity } : card)))
-            window.location = `/list-info/${listID}/${listname}`
+            // window.location = `/list-info/${listID}/${listname}`
+            window.location.reload()
             handleClose()
         } catch (error) {
             console.log(error)

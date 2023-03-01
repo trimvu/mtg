@@ -1,11 +1,22 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
+import { useSelector } from 'react-redux'
 
 const BaseLayout = (props) => {
+
+  const auth = useSelector(state => state.auth)
+  // console.log("auth", auth)
+
   return (
     <>
-        <Header />
+        {
+          typeof auth === 'string'
+          ?
+          <Header />
+          :
+          ''
+        }
         
         <br />
         

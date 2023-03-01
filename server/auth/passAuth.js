@@ -54,7 +54,7 @@ let localLogin = new LocalStrategy(options, async (email, password, done)=>{ // 
 
                 // if no match, then user is invalid
 
-                console.log("local login record: ", records)
+                // console.log("local login record: ", records)
                 return done(null, records[0]) // => this is set on req.user
             }) 
 

@@ -15,7 +15,7 @@ export const signUp = (formData, cb) => async dispatch=>{
 
         let response = await axios.post('/register', formData)
         // response.data.token
-        console.log(response); // token 
+        // console.log(response); // token 
 
         // setting our token inside of global storage
         dispatch({
@@ -32,11 +32,11 @@ export const signUp = (formData, cb) => async dispatch=>{
     }
     catch(error){
 
-        console.log(error);
+        // console.log(error);
 
         dispatch({
             type: actionTypes.ERROR,
-            data: error
+            data: error.response.status
         })
     }
 
@@ -76,8 +76,10 @@ export const signIn = (formData, cb) => async dispatch => {
 
         dispatch({
             type: actionTypes.ERROR,
-            data: error
+            data: error.response.status
         })
+
+        
     }
 }
 

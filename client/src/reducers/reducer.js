@@ -18,13 +18,12 @@ const reducerTemplate = (state = initialState, action) => {
                 ...state,
                 auth: action.data,
                 userID: action.userID,
-                email: action.email,
-                username: action.username,
-                listID: action.listID
+                username: action.username
             }
         case actionTypes.ERROR:
             return {
                 ...state,
+                auth: action.data,
                 error: action.data
             }
             

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import CreateList from './CreateList'
+// import CreateList from './CreateList'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import EditListname from './EditListname'
 import EditUsername from './EditUsername'
 
@@ -11,12 +11,13 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import './Profile.css'
 
 import { FaTrash } from 'react-icons/fa'
+import EditPassword from './EditPassword'
 
 const Profile = () => {
 
   const [username, setUsername] = useState()
   const [userID, setUserID] = useState()
-  const [allLists, setAllLists] = useState([])
+  // const [allLists, setAllLists] = useState([])
   const [userInfo, setUserInfo] = useState()
 
   const displayUserProfile = async() => {
@@ -35,54 +36,54 @@ const Profile = () => {
     }
   }
 
-  const displayListsFetch = async() => {
+  // const displayListsFetch = async() => {
 
-    try {
-        const data = await axios.post('/allList', {
-            userID
-        })
+  //   try {
+  //       const data = await axios.post('/allList', {
+  //           userID
+  //       })
 
-        // console.log(data.data)
+  //       // console.log(data.data)
 
-        // window.location = '/profile';
+  //       // window.location = '/profile';
         
-        setAllLists(data.data)
-    } catch (error) {
-        console.log(error)
-    }
-  }
+  //       setAllLists(data.data)
+  //   } catch (error) {
+  //       console.log(error)
+  //   }
+  // }
   
-  const deleteAllCardsFromList = async(listID) => {
-    try {
-      const deleteAllCards = await axios.delete(`deleteAllCards/${listID}`)
+  // const deleteAllCardsFromList = async(listID) => {
+  //   try {
+  //     const deleteAllCards = await axios.delete(`deleteAllCards/${listID}`)
 
-      // console.log("all cards were deleted!")
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //     // console.log("all cards were deleted!")
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
-  const deleteList = async(id) => {
-    try {
-        deleteAllCardsFromList(id)
-        const deleteList = await axios.delete(`/list/${id}`)
+  // const deleteList = async(id) => {
+  //   try {
+  //       deleteAllCardsFromList(id)
+  //       const deleteList = await axios.delete(`/list/${id}`)
         
-        setAllLists(allLists.filter(list => list.id !== id))
-        // console.log('list deleted')
-    } catch (error) {
-        console.log(error)
-    }
-  }
+  //       setAllLists(allLists.filter(list => list.id !== id))
+  //       // console.log('list deleted')
+  //   } catch (error) {
+  //       console.log(error)
+  //   }
+  // }
 
-  const deleteAllListsFromUser = async(id) => {
-    try {
-      const deleteAllLists = await axios.delete(`/deleteAllLists/${id}`)
+  // const deleteAllListsFromUser = async(id) => {
+  //   try {
+  //     const deleteAllLists = await axios.delete(`/deleteAllLists/${id}`)
 
-      console.log('all lists were deleted!')
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  //     // console.log('all lists were deleted!')
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   const deleteUser = async(id) => {
     try {
@@ -123,18 +124,18 @@ const Profile = () => {
 
   }, [username])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (!userID) return;
-    console.log("getting id")
+  //   if (!userID) return;
+  //   console.log("getting id")
 
-    async function displayList() {
-      displayListsFetch();
-    }
+  //   async function displayList() {
+  //     displayListsFetch();
+  //   }
 
-    displayList()
+  //   displayList()
 
-  }, [userID])
+  // }, [userID])
 
   return (
     <>
@@ -151,6 +152,10 @@ const Profile = () => {
                 <tr>
                   <td><EditUsername userInfo={userInfo} /></td>
                   <td>Update Name</td>
+                </tr>
+                <tr>
+                  <td><EditPassword userInfo={userInfo} /></td>
+                  <td>Update Password</td>
                 </tr>
                 <tr>
                   <td>
@@ -170,11 +175,11 @@ const Profile = () => {
             <br /><br />
           </div>
         </div>
-        <br />
-        <CreateList />
+        {/* <br /> */}
+        {/* <CreateList /> */}
         {/* <DisplayLists /> */}
 
-        <div className='list-table'>
+        {/* <div className='list-table'>
         <br />
           {
             allLists.length > 0
@@ -209,7 +214,7 @@ const Profile = () => {
             <div style={{ textAlign : 'center' }}>'Create lists to view here'</div>
           }
           <br />
-        </div>
+        </div> */}
     </>
   )
 }
