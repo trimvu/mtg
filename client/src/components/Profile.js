@@ -164,7 +164,7 @@ const Profile = () => {
                       ?
                       ''
                       :
-                      <button className='btn btn-danger' onClick={handleDeleteUser}><FaTrash className="icons" size={25} /></button>
+                      <button className='btn btn-danger' onClick={handleDeleteUser}><FaTrash className="icons" size={20} /></button>
                     }
                   </td>
                   <td>Delete User</td>

@@ -22,8 +22,9 @@
 }
 
 .full-cards {
-    width: 400px;
+    width: 300px;
     margin: 1vw;
+    background-color: rgb(165, 165, 165);
     /* margin: 50%; */
     /* margin-left: 50%; */
     /* margin-right: 1vw; */

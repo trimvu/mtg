@@ -36,7 +36,7 @@ const EditUsername = ({ userInfo }) => {
     return (
         <>
             <Button variant="warning" onClick={handleShow}>
-                <FaEdit className="icons" size={25} />
+                <FaEdit className="icons" size={20} />
             </Button>
 
             <Modal show={show} onHide={handleClose} centered>

@@ -32,7 +32,7 @@ const EditPassword = ({ userInfo }) => {
     return (
         <>
             <Button variant="warning" onClick={handleShow}>
-                <CgPassword className="icons" size={25} />
+                <CgPassword className="icons" size={20} />
             </Button>
 
             <Modal show={show} onHide={handleClose} centered>
