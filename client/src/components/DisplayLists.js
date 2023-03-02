@@ -119,7 +119,7 @@ return (
                             <tr>
                             <th scope='row'><Link className='prof-link-color' to={`/list-info/${info.id}/${info.listname}`}>{info.listname}</Link></th>
                             <td><EditListname info={info} /></td>
-                            <td><button className='btn btn-danger' onClick={() => deleteList(info.id)}><FaTrash className="icons" size={25} /></button></td>
+                            <td><button className='btn btn-danger' onClick={() => deleteList(info.id)}><FaTrash className="icons" size={20} /></button></td>
                             </tr>
                         </tbody>
                         )

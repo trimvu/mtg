@@ -74,6 +74,8 @@ export const signIn = (formData, cb) => async dispatch => {
     }
     catch(error){
 
+        console.log(error)
+
         dispatch({
             type: actionTypes.ERROR,
             data: error.response.status

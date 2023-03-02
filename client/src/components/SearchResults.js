@@ -15,20 +15,26 @@ const SearchResults = () => {
 
     const fetchInput = async () => {
 
-        let url = `https://api.scryfall.com/cards/autocomplete?q=${search}`
+        // let url = `https://api.scryfall.com/cards/autocomplete?q=${search}&include_extras=true`
+        let url = `https://api.scryfall.com/cards/search?q=${search}`
     
         let results = await fetch(url);
     
         let data = await results.json();
         // console.log("search.js", data.data)
 
+        // for (let i = 0; i < data.data.length; i++) {
+        //     fetch(`https://api.scryfall.com/cards/named?fuzzy=${data.data[i]}`)
+        //         .then(res => res.json())
+        //         .then(result => {
+        //             setSearchResult(oldArr => [...oldArr, result])
+        //             // console.log("lbk", searchResult)
+        //         })
+        // }
+
         for (let i = 0; i < data.data.length; i++) {
-            fetch(`https://api.scryfall.com/cards/named?fuzzy=${data.data[i]}`)
-                .then(res => res.json())
-                .then(result => {
-                    setSearchResult(oldArr => [...oldArr, result])
-                    // console.log("lbk", searchResult)
-                })
+            // console.log(data.data[i])
+            setSearchResult(data.data)
         }
 
     }
@@ -63,7 +69,14 @@ const SearchResults = () => {
                         searchResult.map(info => {
                             return (
                                     <Card className='full-cards' key={info.name}>
-                                        <Card.Img variant="top" src={`${info.image_uris.normal}`} />
+                                        {
+                                            info.image_uris.normal === undefined
+                                            ?
+                                            <Card.Img variant="top" src={`${info.card_faces[0].image_uris.normal}`} />
+                                            :
+                                            <Card.Img variant="top" src={`${info.image_uris.normal}`} />
+
+                                        }
                                         <Card.Body>
                                             <Card.Title style={{ textAlign: 'center' }}><Link to={`/card-info/${info.name}`}>{info.name}</Link></Card.Title>
                                         </Card.Body>

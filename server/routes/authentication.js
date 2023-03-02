@@ -126,7 +126,7 @@ router.get('/profileInfo', requireJwt, async(req, res) => {
 
         console.log(error)
 
-        res.json({error})
+        res.status(600).json({error})
     }
 
 })
