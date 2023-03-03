@@ -12,6 +12,7 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
     const [cards, setCards] = useState([])
     const [total, setTotal] = useState()
     const [imgPreview, setImgPreview] = useState("")
+    const [scryID, setScryID] = useState("")
 
     const fetchText = async (text) => {
         let url = `https://api.scryfall.com/cards/named?fuzzy=${text}`
@@ -22,6 +23,7 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
         // console.log(data)
 
         setImgPreview(data.image_uris.small)
+        setScryID(data.id)
     
     }
 
@@ -85,6 +87,7 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
         fetchText(e.target.text)
 
         // console.log(imgPreview)
+        // console.log(scryID)
 
     }
 
@@ -148,8 +151,8 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
                             return (
                                 <tbody  key={info.id}>
                                     <tr>
-                                        <th scope='row'><Link onMouseOver={handleOver} to={`/card-info/${info.cardName}`} className="card-link-color">{info.cardName}</Link><img className='card-preview' alt='card preview' src={imgPreview} /></th>
-                                        <td><button className='btn btn-danger' onClick={() => deleteCard(info.id)}><FaTrash className="icons" size={25} /></button></td>
+                                        <th scope='row'><Link onMouseOver={handleOver} to={`/card-info/${scryID}`} className="card-link-color">{info.cardName}</Link><img className='card-preview' alt='card preview' src={imgPreview} /></th>
+                                        <td><button className='btn btn-danger' onClick={() => deleteCard(info.id)}><FaTrash className="icons" size={20} /></button></td>
                                         <td>{info.addedPrice === null ? 'n/a' : formatter.format(info.addedPrice)}</td>
                                         <td>{info.currentPrice === null ? 'n/a' : formatter.format(info.currentPrice)}</td>
                                         <td>{info.quantity}</td>

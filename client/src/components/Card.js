@@ -12,20 +12,28 @@ const Card = () => {
   const [addedPrice, setAddedPrice] = useState(0)
   const [currentPrice, setCurrentPrice] = useState(0)
   const [legalities, setLegalities] = useState([])
-
+  const [frontBack, setFrontBack] = useState(Number(false))
 
   let {card} = useParams()
 
   const cardDetail = async () => {
 
-    const data = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${card}`)
+    const data = await fetch(`https://api.scryfall.com/cards/${card}`)
     const details = await data.json();
-    // console.log("cardInfo: ", details);
+    console.log("cardInfo: ", details);
     setCardInfo(details);
     setCardName(details.name);
     setAddedPrice(details.prices.usd);
     setCurrentPrice(details.prices.usd);
     setLegalities(details.legalities)
+
+  }
+
+  const handleFlip = e => {
+
+    e.preventDefault();
+    setFrontBack(Number(!frontBack))
+    // console.log(frontBack)
 
   }
 
@@ -56,7 +64,13 @@ const Card = () => {
                 <br /><br />
                 <span><b>Type: </b>{cardInfo.type_line}</span>
                 <span className='sec-span'><b>Rarity: </b>{cardInfo.rarity}</span>
-                <p className='to-br'>{cardInfo.oracle_text}<br /><i>{cardInfo.flavor_text}</i></p>
+                {
+                  cardInfo.oracle_text === undefined
+                  ?
+                  <p className='to-br'>{cardInfo.card_faces[frontBack].oracle_text}<br /><i>{cardInfo.card_faces[frontBack].flavor_text}</i></p>
+                  :
+                  <p className='to-br'>{cardInfo.oracle_text}<br /><i>{cardInfo.flavor_text}</i></p>
+                }
                 <span><b>Current Cost: </b>{currentPrice === null ? 'n/a' : <span>${currentPrice} USD</span>}</span>
                 <span className='sec-span'><b>Release Date: </b>{cardInfo.released_at}</span>
               </div>
@@ -139,7 +153,15 @@ const Card = () => {
             
             <div className='right'>
               <br />
-              <img className='right-img' src={cardInfo.image_uris.normal} />
+              {
+                cardInfo.image_uris === undefined
+                ?
+                <img className='right-img-back' src={cardInfo.card_faces[frontBack].image_uris.normal} />
+                :
+                <img className='right-img' src={cardInfo.image_uris.normal} />
+              }
+              <button className='hid-but' onClick={handleFlip}>Flip Card</button>
+              {/* // <img className='right-img' src={cardInfo.image_uris.normal} /> */}
               <br />
             </div>
           </div>

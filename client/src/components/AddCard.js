@@ -144,7 +144,7 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
                         </select>
                         
                         <label className='quantity-margin'>How many would you like to add? <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min='1' required /></label>
-                        
+                        {' '}
                         <button>Add to list</button>
                     </form>
                 </div>

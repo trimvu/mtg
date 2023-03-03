@@ -147,7 +147,23 @@ input:valid ~ label {
     .contain-in-up {
         margin-left: auto;
         margin-right: auto;
-        width: 50%;
-        display: flex;
+        width: 100%;
+        display: block;
+    }
+
+    .in-div {
+        width: 95%;
+    }
+
+    .up-div {
+        width: 95%;
+    }
+
+    .up-div > div > img {
+        height: 32.5vh;
+    }
+    
+    .in-div > div > img {
+        height: 32.5vh;
     }
 }
