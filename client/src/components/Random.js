@@ -17,7 +17,7 @@ const Random = () => {
         let data = await results.json();
         // console.log("random.js", data.name)
 
-        navigate(`/card-info/${data.name}`)
+        navigate(`/card-info/${data.id}`)
 
         window.location.reload()
     }

@@ -109,6 +109,25 @@ p {
     width: 37vh;
 }
 
+.right-img-back {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 50%; */
+    /* height: 90vh; */
+    width: 37vh;
+}
+
+.hid-but {
+    display: none;
+}
+
+.right-img-back + .hid-but {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @media (max-width: 800px) {
     .contain {
         display: block;

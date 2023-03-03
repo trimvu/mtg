@@ -33,7 +33,7 @@ const SearchResults = () => {
         // }
 
         for (let i = 0; i < data.data.length; i++) {
-            // console.log(data.data[i])
+            // console.log(data.data[i].image_uris.normal)
             setSearchResult(data.data)
         }
 
@@ -70,7 +70,7 @@ const SearchResults = () => {
                             return (
                                     <Card className='full-cards' key={info.name}>
                                         {
-                                            info.image_uris.normal === undefined
+                                            info.image_uris === undefined
                                             ?
                                             <Card.Img variant="top" src={`${info.card_faces[0].image_uris.normal}`} />
                                             :
@@ -78,7 +78,7 @@ const SearchResults = () => {
 
                                         }
                                         <Card.Body>
-                                            <Card.Title style={{ textAlign: 'center' }}><Link to={`/card-info/${info.name}`}>{info.name}</Link></Card.Title>
+                                            <Card.Title style={{ textAlign: 'center' }}><Link to={`/card-info/${info.id}`}>{info.name}</Link></Card.Title>
                                         </Card.Body>
                                     </Card>
                             )
