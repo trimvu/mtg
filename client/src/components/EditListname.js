@@ -9,7 +9,7 @@ const EditListname = ({ info }) => {
 
     // console.log("info", info)
     const [listname, setListname] = useState(info.listname)
-    const [listID, setListID] = useState(info.id)
+    // const [listID, setListID] = useState(info.id)
     const [show, setShow] = useState(false);
 
     // console.log(listname)

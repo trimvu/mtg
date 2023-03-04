@@ -7,7 +7,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(195, 185, 95, 1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -24,7 +24,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(195, 185, 95, 1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -67,7 +67,7 @@
     width: 55vw;
     text-align: center;
 
-    background: rgba(255, 255, 255, 0.25);
+    background: white;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);

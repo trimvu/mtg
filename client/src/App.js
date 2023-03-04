@@ -3,12 +3,12 @@ import axios from 'axios'
 import SigninAndSignup from './components/auth/SigninAndSignup'
 
 import './App.css'
-import display1 from './images/display1.png'
-import display2 from './images/display2.png'
-import display3 from './images/display3.png'
-import display4 from './images/display4.png'
-import display5 from './images/display5.png'
-import display6 from './images/display6.png'
+import disp1 from './images/disp1.png'
+import disp2 from './images/disp2.png'
+import disp3 from './images/disp3.png'
+import disp4 from './images/disp4.png'
+import disp5 from './images/disp5.png'
+import disp6 from './images/disp6.png'
 
 const App = () => {
 
@@ -33,7 +33,8 @@ const App = () => {
     // e.preventDefault();
     try {
 
-        const edit = await axios.put(`/card-price-update/${id}`, {
+        // const edit = await axios.put(`/card-price-update/${id}`, {
+        await axios.put(`/card-price-update/${id}`, {
             currentPrice
         })
 
@@ -69,7 +70,7 @@ const App = () => {
     
     var date = new Date().toLocaleDateString();
 
-    if( localStorage.yourapp_date == date ) 
+    if( localStorage.yourapp_date === date ) 
         return false;
 
     localStorage.yourapp_date = date;
@@ -103,7 +104,7 @@ const App = () => {
             <div className='display1'>
               <div className='display1-left'>
                 <br />
-                <img src={display1} alt='Display 1' />
+                <img src={disp1} alt='Display 1' />
                 <br /><br />
               </div>
               <div className='display1-right'>
@@ -125,7 +126,7 @@ const App = () => {
               </div>
               <div className='display2-right'>
                 <br />
-                <img src={display2} alt='Display 2' />
+                <img src={disp2} alt='Display 2' />
                 <br /><br />
               </div>
             </div>
@@ -133,7 +134,7 @@ const App = () => {
             <div className='display3'>
               <div className='display1-left'>
                 <br />
-                <img src={display3} alt='Display 3' />
+                <img src={disp3} alt='Display 3' />
                 <br /><br />
               </div>
               <div className='display1-right'>
@@ -156,7 +157,7 @@ const App = () => {
               </div>
               <div className='display2-right'>
                 <br />
-                <img src={display5} alt='Display 5' />
+                <img src={disp4} alt='Display 4' />
                 <br /><br />
               </div>
             </div>
@@ -164,13 +165,16 @@ const App = () => {
             <div className='display5'>
               <div className='display1-left'>
                 <br />
-                <img src={display4} alt='Display 4' />
+                <img src={disp5} alt='Display 5' />
                 <br /><br />
               </div>
               <div className='display1-right'>
                 <div className='contain-text'>
-                  <h1>The Selected List</h1>
-                  <p>Once you click on your list, you are returned the name of your list, the total cost of your list, and the list of cards you added to the list (if cards were added to the list beforehand). With each card, you can hover over the card's name to see a preview of the card's image. You can also see how much the card cost when you first added the card to the list, the current cost of the card, the quantity of the card, and the total cost of the card (current price of card x quantity of card). If a card does not have a price, then it is listed as 'n/a' and will count as $0.00 towards the list. You have the ability to update the quantity of cards and to delete cards.</p>
+                  <h1>View Card</h1>
+                  <p>When you view a card (through search, random, or from your list), the card's information is returned.</p>
+                  <p>On the left of the page, you can view the card's name, mana cost, artist, type, rarity, oracle text, flavor text, current cost of the card in USD, release date, and the card's legalities.</p>
+                  <p>On the right of the page, you can view the card's image. If the card has more than one face to the card, there is a 'Flip Card' button to view the other side of the card.</p>
+                  <p>On the top of the page, you can select which list you want to add the card to (if you have already created a list) and the quantity.</p>
 
                 </div>
               </div>
@@ -179,17 +183,14 @@ const App = () => {
             <div className='display6'>
               <div className='display2-left'>
                 <div className='contain-text'>
-                  <h1>View Card</h1>
-                  <p>When you view a card (through search, random, or from your list), the card's information is returned.</p>
-                  <p>On the left of the page, you can view the card's name, mana cost, artist, type, rarity, oracle text, flavor text, current cost of the card in USD, release date, and the card's legalities.</p>
-                  <p>On the right of the page, you can view the card's image. If the card has more than one face to the card, there is a 'Flip Card' button to view the other side of the card.</p>
-                  <p>On the top of the page, you can select which list you want to add the card to (if you have already created a list) and the quantity.</p>
-                  
+                  <h1>The Selected List</h1>
+                  <p>Once you click on your list, you are returned the name of your list, the total cost of your list, and the list of cards you added to the list (if cards were added to the list beforehand). With each card, you can hover over the card's name to see a preview of the card's image. You can also see how much the card cost when you first added the card to the list, the current cost of the card, the quantity of the card, and the total cost of the card (current price of card x quantity of card). If a card does not have a price, then it is listed as 'n/a' and will count as $0.00 towards the list. This is due to it not being available in the database. Finally, you have the ability to update the quantity of cards and to delete cards.</p>
+
                 </div>
               </div>
               <div className='display2-right'>
                 <br />
-                <img src={display6} alt='Display 6' />
+                <img src={disp6} alt='Display 6' />
                 <br /><br />
               </div>
             </div>

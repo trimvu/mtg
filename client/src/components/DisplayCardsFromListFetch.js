@@ -57,7 +57,8 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
 
     const deleteCard = async(id) => {
         try {
-            const deleteCard = await axios.delete(`/card/${id}`)
+            // const deleteCard = await axios.delete(`/card/${id}`)
+            await axios.delete(`/card/${id}`)
             
             setCards(cards.filter(card => card.id !== id))
         } catch (error) {

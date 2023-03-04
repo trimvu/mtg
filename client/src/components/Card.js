@@ -20,7 +20,7 @@ const Card = () => {
 
     const data = await fetch(`https://api.scryfall.com/cards/${card}`)
     const details = await data.json();
-    console.log("cardInfo: ", details);
+    // console.log("cardInfo: ", details);
     setCardInfo(details);
     setCardName(details.name);
     setAddedPrice(details.prices.usd);
@@ -156,9 +156,9 @@ const Card = () => {
               {
                 cardInfo.image_uris === undefined
                 ?
-                <img className='right-img-back' src={cardInfo.card_faces[frontBack].image_uris.normal} />
+                <img className='right-img-back' src={cardInfo.card_faces[frontBack].image_uris.normal} alt='card' />
                 :
-                <img className='right-img' src={cardInfo.image_uris.normal} />
+                <img className='right-img' src={cardInfo.image_uris.normal} alt='card' />
               }
               <button className='hid-but' onClick={handleFlip}>Flip Card</button>
               {/* // <img className='right-img' src={cardInfo.image_uris.normal} /> */}

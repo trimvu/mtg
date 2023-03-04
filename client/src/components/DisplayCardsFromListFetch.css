@@ -1,14 +1,14 @@
 .list-card-table {
     text-align: left;
     justify-content: center;
-    border: #00452c;
+    /* border: #00452c; */
     border-style: solid;
     border-radius: 20px;
     width: 99%;
     margin-left: auto;
     margin-right: auto;
 
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(195, 185, 95, 1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -50,6 +50,12 @@
     margin-right: auto;
     width: 55vw;
     text-align: center;
+
+    background: white;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .card-link-color {
@@ -66,13 +72,13 @@
     width: 59%;
     margin-left: auto;
     margin-right: auto;
-    border: #00452c;
+    /* border: #00452c; */
     border-style: solid;
     border-radius: 20px;
     text-align: center;
     justify-content: center;
 
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(195, 185, 95, 1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -83,12 +89,12 @@
     width: 39%;
     margin-left: auto;
     margin-right: auto;
-    border: #00452c;
+    /* border: #00452c; */
     border-style: solid;
     border-radius: 20px;
     text-align: center;
 
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(195, 185, 95, 1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);

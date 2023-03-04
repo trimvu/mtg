@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 // import CreateList from './CreateList'
 import axios from 'axios'
 // import { Link } from 'react-router-dom'
-import EditListname from './EditListname'
+// import EditListname from './EditListname'
 import EditUsername from './EditUsername'
 
 import { confirmAlert } from 'react-confirm-alert'; // Import
@@ -88,7 +88,8 @@ const Profile = () => {
   const deleteUser = async(id) => {
     try {
         // deleteAllListsFromUser(id)
-        const deleteUser = await axios.delete(`/deleteUser/${id}`)
+        // const deleteUser = await axios.delete(`/deleteUser/${id}`)
+        await axios.delete(`/deleteUser/${id}`)
         
         // setAllLists(allLists.filter(list => list.id !== id))
         alert('User was deleted!')

@@ -11,7 +11,7 @@ const DisplayLists = () => {
     const [username, setUsername] = useState()
     const [userID, setUserID] = useState()
     const [allLists, setAllLists] = useState([])
-    const [userInfo, setUserInfo] = useState()
+    // const [userInfo, setUserInfo] = useState()
 
     const displayUserProfile = async() => {
         try {
@@ -23,7 +23,7 @@ const DisplayLists = () => {
             // console.log("the username data", data)
             setUsername(data.data[0].username)
             setUserID(data.data[0].id)
-            setUserInfo(data.data[0])
+            // setUserInfo(data.data[0])
         } catch (error) {
             console.log(error)
         }
@@ -48,7 +48,8 @@ const DisplayLists = () => {
 
     const deleteAllCardsFromList = async(listID) => {
         try {
-            const deleteAllCards = await axios.delete(`deleteAllCards/${listID}`)
+            // const deleteAllCards = await axios.delete(`deleteAllCards/${listID}`)
+            await axios.delete(`deleteAllCards/${listID}`)
     
           // console.log("all cards were deleted!")
         } catch (error) {
@@ -59,7 +60,8 @@ const DisplayLists = () => {
     const deleteList = async(id) => {
         try {
             deleteAllCardsFromList(id)
-            const deleteList = await axios.delete(`/list/${id}`)
+            // const deleteList = await axios.delete(`/list/${id}`)
+            await axios.delete(`/list/${id}`)
             
             setAllLists(allLists.filter(list => list.id !== id))
             // console.log('list deleted')
