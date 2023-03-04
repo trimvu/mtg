@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card';
 
@@ -9,7 +9,7 @@ const SearchResults = () => {
 
     let { search } = useParams();
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const [searchResult, setSearchResult] = useState([])
 

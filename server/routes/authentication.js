@@ -100,7 +100,7 @@ router.post('/login', requireLogin, (req, res) => {
     
     // console.log("user logging route: ", req.user)
 
-    res.json({token: token(req.user), userID: req.user.dataValues.id, username: req.user.dataValues.username})
+    res.json({token: token(req.user)})
     
 })
 
@@ -118,13 +118,17 @@ router.get('/profileInfo', requireJwt, async(req, res) => {
     try {
         let id = req.user.id
         // console.log("USERNAME ID", id)
-        let profile = await db.users.findAll({where: {id: id}})
-        // console.log("the profile: ", profile)
-        res.json(profile)
+        if (id) {
+            let profile = await db.users.findAll({where: {id: id}})
+            // console.log("the profile: ", profile)
+            res.json(profile)
+        } else {
+            res.status(6003).json({error})
+        }
 
     } catch (error) {
 
-        console.log(error)
+        console.log("error")
 
         res.status(600).json({error})
     }

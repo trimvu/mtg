@@ -14,14 +14,11 @@ const SigninAndSignup = () => {
     const [upImg, setUpImg] = useState("")
     const [upArt, setUpArt] = useState("")
 
-    const signInCards = ["Grand Abolisher", "Black Market Connections", "Lightning Bolt", "Monastery Swiftspear", "Wurmcoil Engine", "Urza's Power Plant", "Birds of Paradise", "Smothering Tithe", "Karn, the Great Creator", "Sacred Foundry"];
-    const randomInCard = signInCards[Math.floor(Math.random()*signInCards.length)];
-
-    const signUpCards = ["Karador, Ghost Chieftain", "Brood Sliver", "Platinum Angel", "Cyclonic Rift", "Oblivion Stone", "Path to Exile", "Grave Titan", "Ugin, the Spirit Dragon", "Collected Company", "Skullclamp"];
-    const randomUpCard = signUpCards[Math.floor(Math.random()*signUpCards.length)];
+    const displayCards = ["Grand Abolisher", "Black Market Connections", "Lightning Bolt", "Monastery Swiftspear", "Wurmcoil Engine", "Urza's Power Plant", "Birds of Paradise", "Smothering Tithe", "Karn, the Great Creator", "Sacred Foundry", "Karador, Ghost Chieftain", "Brood Sliver", "Platinum Angel", "Cyclonic Rift", "Oblivion Stone", "Path to Exile", "Grave Titan", "Ugin, the Spirit Dragon", "Collected Company", "Skullclamp"];
+    const randomDisplayCard = displayCards[Math.floor(Math.random()*displayCards.length)];
 
     const fetchSigninCard = async () => {
-        let url = `https://api.scryfall.com/cards/named?fuzzy=${randomInCard}`
+        let url = `https://api.scryfall.com/cards/named?fuzzy=${randomDisplayCard}`
 
         let results = await fetch(url);
 
@@ -34,7 +31,7 @@ const SigninAndSignup = () => {
     }
 
     const fetchSignupCard = async () => {
-        let url = `https://api.scryfall.com/cards/named?fuzzy=${randomUpCard}`
+        let url = `https://api.scryfall.com/cards/named?fuzzy=${randomDisplayCard}`
 
         let results = await fetch(url);
 

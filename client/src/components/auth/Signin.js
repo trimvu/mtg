@@ -58,7 +58,7 @@ const Signin = () => {
                 <div className="">
                   <input type="submit" value="Log In" />
                   {
-                    auth === 500
+                    auth === 500 || auth === 401
                     ?
                     <div>'Incorrect E-mail or Password'</div>
                     :

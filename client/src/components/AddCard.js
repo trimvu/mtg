@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 import './AddCard.css'
@@ -11,7 +11,7 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
     const [quantity, setQuantity] = useState(1)
     const [allLists, setAllLists] = useState([])
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const displayUserID = async() => {
         try {
