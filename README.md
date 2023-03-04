@@ -10,7 +10,7 @@ This Magic: The Gathering (MTG) Price Tracking website is a site that gives user
 
 On the top left of the navigation bar, users are presented with four options: the website's name and 'Home' button, the 'Profile' button, the 'Collection' button, and the 'Log Out' button. Clicking on the website's name or the 'Home' button will direct users to a page with instruction on how to use the website.
 
-When the user click on the 'Collection' button, they have the ability to create lists, view the lists they have created, update the name of lists, and delete any lists the user wants. Users can use the search feature on the top right corner of the navigation bar which will generate a list of cards that contain the word or words that were inputted by the user. Alternatively, users can click on the random button to return a random card. 
+When the user click on the 'Collection' button, they have the ability to create lists, view the lists they have created, update the name of lists, and delete any lists the user wants. Users can use the search feature on the top right corner of the navigation bar which will generate a list of cards from the Scryfall API that contain the word or words that were inputted by the user. Alternatively, users can click on the random button to return a random card. 
 
 Once a card is clicked on, users have the ability to add cards to their lists (if they have already created at least one). When viewing the list of cards in a chosen list, users can view all the cards they added to the list, along with the name of the list, and the total cost of the cards in the list. When hovering over the name of the card, a preview image will appear next to the card's name. Here, users can edit the quantity of the card(s) and delete the card(s). 
 
@@ -34,11 +34,12 @@ Clicking on the 'Log Out' button will direct the user back to the 'Log In and Re
 ## MVP (Minimum Viable Product)
 
 * Register, log in, and log out with authentication
+* Generating data from Scryfall's Magic: The Gathering API to populate the contents of the pages and my database
 * Create lists, view all lists created by user, update list name, and delete list
 * Add cards to lists, view cards in a given list, update the quantity of a card, and deleting a card from the list
 * View the list of cards of the user's input
 * Automatically updating the price of the cards in the database 
-* An moderately appealing user interface
+* A moderately appealing user interface
 
 ## Stretch Goals
 
@@ -51,7 +52,7 @@ Clicking on the 'Log Out' button will direct the user back to the 'Log In and Re
 
 ## Potential Future Goal
 
-* Rework my database (specifically the cards' table) to allow users to view more specific cards of a certain set
+* Rework my database (specifically the cards' table) to allow users to view and add more specific cards of a certain set
 
 ## Developer
 
