@@ -1,5 +1,16 @@
 # Tri Vu's Magic: The Gathering Price Tracking App
 
+## Table of Content
+
+* [Title](https://github.com/trimvu/mtg#tri-vus-magic-the-gathering-price-tracking-app)
+* [Live Demo](https://github.com/trimvu/mtg#live-demo)
+* [About](https://github.com/trimvu/mtg#about)
+* [Technology Stack](https://github.com/trimvu/mtg#technology-stack)
+* [MVP (Minimum Viable Product)](https://github.com/trimvu/mtg#mvp-minimum-viable-product)
+* [Stretch Goals](https://github.com/trimvu/mtg#stretch-goals)
+* [Potential Future Goal](https://github.com/trimvu/mtg#potential-future-goal)
+* [Developer](https://github.com/trimvu/mtg#developer)
+
 ## Live Demo
 
 [https://mtg.herokuapp.com/](https://mtg.herokuapp.com/)
