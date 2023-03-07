@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 // import Signin from './components/auth/Signin';
 // import Signout from './components/auth/Signout';
-import Signup from './components/auth/Signup';
+// import Signup from './components/auth/Signup';
 import BaseLayout from './components/layout/BaseLayout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {createStore, compose, applyMiddleware} from 'redux';
@@ -42,7 +42,7 @@ root.render(
       <BaseLayout>
         <Routes>
           <Route path='/' element={<App />}/>
-          <Route path='/signup' element={<Signup />}/>
+          {/* <Route path='/signup' element={<Signup />}/> */}
           {/* <Route path='/signin' element={<Signin />}/> */}
           {/* <Route path='/signout' element={<Signout />}/> */}
           <Route path='/search-result/:search' element={<SearchResults />}/>
