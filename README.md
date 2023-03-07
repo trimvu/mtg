@@ -1,13 +1,13 @@
 # Tri Vu's Magic: The Gathering Price Tracking App
 
-## Table of Content
+## Table of Contents
 
 * [Title](https://github.com/trimvu/mtg#tri-vus-magic-the-gathering-price-tracking-app)
 * [Live Demo](https://github.com/trimvu/mtg#live-demo)
 * [About](https://github.com/trimvu/mtg#about)
 * [Technology Stack](https://github.com/trimvu/mtg#technology-stack)
 * [MVP (Minimum Viable Product)](https://github.com/trimvu/mtg#mvp-minimum-viable-product)
-* [Stretch Goals](https://github.com/trimvu/mtg#stretch-goals)
+* [Stretch Goals](https://github.com/trimvu/mtg#completed-stretch-goals)
 * [Potential Future Goal](https://github.com/trimvu/mtg#potential-future-goal)
 * [Developer](https://github.com/trimvu/mtg#developer)
 
@@ -50,20 +50,23 @@ Clicking on the 'Log Out' button will direct the user back to the 'Log In and Re
 * Add cards to lists, view cards in a given list, update the quantity of a card, and deleting a card from the list
 * View the list of cards of the user's input
 * Automatically updating the price of the cards in the database 
+* Formatting the project to properly fit on a 1440p monitor
 * A moderately appealing user interface
 
-## Stretch Goals
+## Completed Stretch Goals
 
 * Updating the user's name, updating the user's password with encryption, and deleting the user
 * A landing page (the home page) that gives users instructions, along with images, on how to use the website
 * A 'random button' that generates a random card
 * The ability to hover over a card and view a preview image of the card
 * A button that allows the user to 'flip' the card if the card has more than one side
-* The user log in and registration page on one page
+* The user log in and registration on one page with conditional rendering to switch between components
+* MaKe the project mobile responsive
 
 ## Potential Future Goal
 
 * Rework my database (specifically the cards' table) to allow users to view and add more specific cards of a certain set
+* Format the project so that it fits properly on monitors with 720p and 1080p resolution
 
 ## Developer
 
