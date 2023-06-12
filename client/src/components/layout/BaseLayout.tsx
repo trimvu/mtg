@@ -3,9 +3,17 @@ import Header from './Header'
 import Footer from './Footer'
 import { useSelector } from 'react-redux'
 
-const BaseLayout = (props) => {
+type BaseLayoutProp = {
+  children: React.ReactNode
+}
 
-  const auth = useSelector(state => state.auth)
+type AuthProp = {
+  auth: string,
+}
+
+const BaseLayout = (props: BaseLayoutProp) => {
+
+  const auth = useSelector((state: AuthProp) => state.auth)
   // console.log("auth", auth)
 
   return (

@@ -5,7 +5,16 @@ import Modal from 'react-bootstrap/Modal';
 
 import { FaEdit } from 'react-icons/fa'
 
-const EditListname = ({ info }) => {
+type InfoProp = {
+    info: ListInfoProp
+}
+
+type ListInfoProp = {
+    id: number,
+    listname: string,
+}
+
+const EditListname = ({ info }: InfoProp) => {
 
     // console.log("info", info)
     const [listname, setListname] = useState(info.listname)
@@ -17,7 +26,7 @@ const EditListname = ({ info }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const editListname = async(e) => {
+    const editListname = async(e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         e.preventDefault();
         try {
 

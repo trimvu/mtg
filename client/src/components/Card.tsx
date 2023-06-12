@@ -5,13 +5,78 @@ import AddCards from './AddCard'
 
 import './Card.css'
 
+type CardObjectProp = {
+  name: string,
+  mana_cost: string,
+  artist: string,
+  type_line: string,
+  rarity: string,
+  oracle_text?: string | undefined,
+  card_faces: CardFacesProp[],
+  flavor_text: string,
+  released_at: string,
+  image_uris?: {
+    normal: string | undefined,
+  },
+}
+
+type CardFacesProp = {
+  oracle_text: string | undefined,
+  flavor_text: string | undefined,
+  image_uris: {
+    normal: string | undefined
+  }
+}
+
+type LegalitiesProp = {
+  alchemy: "legal" | "not_legal",
+  brawl: "legal" | "not_legal",
+  commander: "legal" | "not_legal",
+  duel: "legal" | "not_legal",
+  explorer: "legal" | "not_legal",
+  future: "legal" | "not_legal",
+  gladiator: "legal" | "not_legal",
+  historic: "legal" | "not_legal",
+  historicbrawl: "legal" | "not_legal",
+  legacy: "legal" | "not_legal",
+  modern: "legal" | "not_legal",
+  oldschool: "legal" | "not_legal",
+  pauper: "legal" | "not_legal",
+  paupercommander: "legal" | "not_legal",
+  penny: "legal" | "not_legal",
+  pioneer: "legal" | "not_legal",
+  predh: "legal" | "not_legal",
+  premodern: "legal" | "not_legal",
+  standard: "legal" | "not_legal",
+  vintage: "legal" | "not_legal",
+}
+
 const Card = () => {
 
-  const [cardInfo, setCardInfo] = useState()
-  const [cardName, setCardName] = useState()
+  const [cardInfo, setCardInfo] = useState<CardObjectProp>({
+    name: '',
+    mana_cost: '',
+    artist: '',
+    type_line: '',
+    rarity: '',
+    oracle_text: '',
+    card_faces: [{
+      oracle_text: '',
+      flavor_text: '',
+      image_uris: {
+        normal: ''
+      }
+    }],
+    flavor_text: '',
+    released_at: '',
+    image_uris: {
+      normal: ''
+    },
+  })
+  const [cardName, setCardName] = useState('')
   const [addedPrice, setAddedPrice] = useState(0)
   const [currentPrice, setCurrentPrice] = useState(0)
-  const [legalities, setLegalities] = useState([])
+  const [legalities, setLegalities] = useState<LegalitiesProp>({} as LegalitiesProp)
   const [frontBack, setFrontBack] = useState(Number(false))
 
   let {card} = useParams()
@@ -20,7 +85,7 @@ const Card = () => {
 
     const data = await fetch(`https://api.scryfall.com/cards/${card}`)
     const details = await data.json();
-    // console.log("cardInfo: ", details);
+    console.log("cardInfo: ", details);
     setCardInfo(details);
     setCardName(details.name);
     setAddedPrice(details.prices.usd);
@@ -29,7 +94,7 @@ const Card = () => {
 
   }
 
-  const handleFlip = e => {
+  const handleFlip = (e: React.MouseEvent<HTMLButtonElement>) => {
 
     e.preventDefault();
     setFrontBack(Number(!frontBack))
@@ -91,7 +156,7 @@ const Card = () => {
                     <td>Brawl: {legalities.brawl}</td>
                   </tr>
                   <tr>
-                    <td>Commander: {legalities.brawl}</td>
+                    <td>Commander: {legalities.commander}</td>
                   </tr>
                   <tr>
                     <td>Duel: {legalities.duel}</td>
@@ -154,7 +219,7 @@ const Card = () => {
             <div className='right'>
               <br />
               {
-                cardInfo.image_uris === undefined
+                cardInfo?.image_uris === undefined
                 ?
                 <img className='right-img-back' src={cardInfo.card_faces[frontBack].image_uris.normal} alt='card' />
                 :

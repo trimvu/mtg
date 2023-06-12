@@ -4,12 +4,35 @@ import axios from 'axios'
 
 import './AddCard.css'
 
-const AddCards = ({ cardName, addedPrice, currentPrice }) => {
+type CardDetailProps = {
+    cardName: string
+    addedPrice: number
+    currentPrice: number
+}
 
-    const [userID, setUserID] = useState()
-    const [listID, setListID] = useState()
+// type UserIdProp = {
+//     userID: number
+//     id: number
+// }
+
+// type ListIdProp = {
+//     listID: string
+//     id: number
+// }
+
+type AllListProp = {
+    allList: string | number
+    id: number
+    userID: number
+    listname: string
+}
+
+const AddCards = ({ cardName, addedPrice, currentPrice }: CardDetailProps) => {
+
+    const [userID, setUserID] = useState<number | undefined>()
+    const [listID, setListID] = useState<number | undefined>()
     const [quantity, setQuantity] = useState(1)
-    const [allLists, setAllLists] = useState([])
+    const [allLists, setAllLists] = useState<AllListProp[]>([])
 
     // const navigate = useNavigate();
 
@@ -37,8 +60,10 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
             // console.log(data.data)
 
             // window.location = '/profile';
+
+            // let sorting: AllListProp[] = data.data.sort((a, b) => a.id - b.id)
             
-            setAllLists(data.data.sort((a, b) => a.id - b.id))
+            setAllLists(data.data.sort((a: AllListProp, b: AllListProp) => a.id - b.id))
             setListID(data.data[0].id)
             // console.log("first", data.data[0].id)
         } catch (error) {
@@ -62,10 +87,10 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
 
     }, [userID])
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault();
 
-        const selectedList = e.target.value
+        const selectedList = parseInt(e.target.value)
         
         setListID(selectedList)
 
@@ -73,7 +98,7 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
 
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
         e.preventDefault();
         // setUserInput(textValue)
@@ -134,7 +159,7 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
                             {
                                 allLists.map(info => {
                                     return (
-                                        <option key={info.id} value={info.id} listname={info.id}>
+                                        <option key={info.id} value={info.id}>
                                             {info.listname}
                                             {/* {info.listname} */}
                                         </option>
@@ -143,7 +168,7 @@ const AddCards = ({ cardName, addedPrice, currentPrice }) => {
                             }
                         </select>
                         
-                        <label className='quantity-margin'>How many would you like to add? <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} min='1' required /></label>
+                        <label className='quantity-margin'>How many would you like to add? <input type="number" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))} min='1' required /></label>
                         {' '}
                         <button>Add to list</button>
                     </form>

@@ -5,19 +5,25 @@ import { useNavigate } from 'react-router-dom'
 // import './Signin.css'
 import { useSelector } from "react-redux";
 
+type AuthProp = {
+  auth: {
+    message: "Request failed with status code 422"
+  }
+}
+
 const Signup = () => {
 
   const [email, setEmail] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
-  const auth = useSelector(state => state.auth)
+  const auth = useSelector((state: AuthProp) => state.auth)
   // console.log(auth)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     
     e.preventDefault();
 
@@ -72,7 +78,7 @@ const Signup = () => {
                 <div className="">
                   <input type="submit" value="Sign Up" />
                   {
-                    auth === 422
+                    auth?.message === "Request failed with status code 422"
                     ?
                     <div>'E-mail already exists'</div>
                     :

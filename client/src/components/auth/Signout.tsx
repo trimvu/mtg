@@ -8,7 +8,6 @@ const Signout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const logout = () => {
 
     dispatch(signOut(()=>{

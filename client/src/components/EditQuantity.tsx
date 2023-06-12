@@ -5,7 +5,18 @@ import Modal from 'react-bootstrap/Modal';
 
 import { FaEdit } from 'react-icons/fa'
 
-const EditQuantity = ({ info }) => {
+type InfoProp = {
+  info: CardInfoProp
+
+}
+
+type CardInfoProp = {
+  id: number,
+  cardName: string,
+  quantity: number,
+}
+
+const EditQuantity = ({ info }: InfoProp) => {
 
     // console.log("info", info)
 
@@ -16,7 +27,7 @@ const EditQuantity = ({ info }) => {
     const handleShow = () => setShow(true);
     // console.log(quantity)
 
-    const editQuantity = async(e) => {
+    const editQuantity = async(e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         e.preventDefault();
         try {
             if (quantity > 0) {
@@ -47,7 +58,7 @@ const EditQuantity = ({ info }) => {
         <Modal.Header closeButton>
           <Modal.Title>Update Quantity for: {info.cardName}</Modal.Title>
         </Modal.Header>
-        <Modal.Body><input type="number" className='form-control' value={quantity} min='0' onChange={e => setQuantity(e.target.value)} /></Modal.Body>
+        <Modal.Body><input type="number" className='form-control' value={quantity} min='0' onChange={e => setQuantity(parseInt(e.target.value))} /></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

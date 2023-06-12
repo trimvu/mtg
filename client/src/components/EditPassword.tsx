@@ -5,7 +5,18 @@ import Modal from 'react-bootstrap/Modal';
 
 import { CgPassword } from 'react-icons/cg'
 
-const EditPassword = ({ userInfo }) => {
+type UserInfoProps = {
+    id: number,
+    email: string,
+    username: string,
+    password: string,
+}
+
+type UserInfoObjectProps = {
+    userInfo: UserInfoProps
+}
+
+const EditPassword = ({ userInfo }: UserInfoObjectProps) => {
 
     const [password, setPassword] = useState('')
     const [show, setShow] = useState(false);
@@ -13,7 +24,7 @@ const EditPassword = ({ userInfo }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const editPassword = async(e) => {
+    const editPassword = async(e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         e.preventDefault();
         try {
 

@@ -6,11 +6,16 @@ import EditListname from './EditListname'
 
 import { FaTrash } from 'react-icons/fa'
 
+type ListProps = {
+    id: number,
+    listname: string,
+}
+
 const DisplayLists = () => {
 
-    const [username, setUsername] = useState()
-    const [userID, setUserID] = useState()
-    const [allLists, setAllLists] = useState([])
+    const [username, setUsername] = useState('')
+    const [userID, setUserID] = useState<number | undefined>()
+    const [allLists, setAllLists] = useState<ListProps[]>([])
     // const [userInfo, setUserInfo] = useState()
 
     const displayUserProfile = async() => {
@@ -46,7 +51,7 @@ const DisplayLists = () => {
         }
     }
 
-    const deleteAllCardsFromList = async(listID) => {
+    const deleteAllCardsFromList = async(listID: number): Promise<void> => {
         try {
             // const deleteAllCards = await axios.delete(`deleteAllCards/${listID}`)
             await axios.delete(`deleteAllCards/${listID}`)
@@ -57,7 +62,7 @@ const DisplayLists = () => {
         }
     }
     
-    const deleteList = async(id) => {
+    const deleteList = async(id: number): Promise<void> => {
         try {
             deleteAllCardsFromList(id)
             // const deleteList = await axios.delete(`/list/${id}`)

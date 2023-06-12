@@ -3,20 +3,29 @@ import { useDispatch } from 'react-redux'
 import { signIn } from '../../actions'
 import { useNavigate } from 'react-router-dom'
 // import './Signin.css'
-import { useSelector  } from "react-redux";
+import { useSelector } from "react-redux";
+
+type AuthProp = {
+  auth: {
+    message: "Request failed with status code 500" | "Request failed with status code 401"
+    config: {
+      method: string
+    }
+  }
+}
 
 const Signin = () => {
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const auth = useSelector(state => state.auth)
+  const auth = useSelector((state: AuthProp) => state.auth)
   // console.log("the auth", auth)
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
     e.preventDefault();
     dispatch(signIn({email, password}, ()=>{
@@ -58,7 +67,7 @@ const Signin = () => {
                 <div className="">
                   <input type="submit" value="Log In" />
                   {
-                    auth === 500 || auth === 401
+                    auth?.message === "Request failed with status code 500" || (auth?.message === "Request failed with status code 401" && auth?.config.method === "post")
                     ?
                     <div>'Incorrect E-mail or Password'</div>
                     :

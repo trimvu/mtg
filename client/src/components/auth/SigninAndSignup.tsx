@@ -43,7 +43,7 @@ const SigninAndSignup = () => {
         setUpArt(data.artist)
     }
 
-    const handleClick = (e) => {
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if (togglePanel === true) {
             setTogglePanel(false)

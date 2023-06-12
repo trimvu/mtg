@@ -1,5 +1,6 @@
 
-import actionTypes from './actionTypes';
+import { Dispatch } from 'redux';
+import actionTypes from './actionTypes'
 import axios from 'axios'
 
 
@@ -8,7 +9,33 @@ import axios from 'axios'
  * {email,password}
  */
 
-export const signUp = (formData, cb) => async dispatch=>{
+type SIFormData = {
+    email: string,
+    password: string,
+}
+
+type SUFormData = {
+    email: string,
+    username: string,
+    password: string,
+}
+
+type ResponseData = {
+    token: string;
+    userID?: string;
+    email?: string;
+    username?: string;
+}
+
+type Action = {
+    type: string,
+    data: any,
+    userID?: string,
+    email?: string,
+    username?: string,
+}
+
+export const signUp = (formData: SUFormData, cb: () => void) => async (dispatch: Dispatch<Action>) => {
 
     try{
         // api call to our backend 
@@ -18,7 +45,7 @@ export const signUp = (formData, cb) => async dispatch=>{
         // console.log(response); // token 
 
         // setting our token inside of global storage
-        dispatch({
+        dispatch<any>({
             type: actionTypes.AUTH_USER,
             data: response.data.token
         })
@@ -34,9 +61,9 @@ export const signUp = (formData, cb) => async dispatch=>{
 
         // console.log(error);
 
-        dispatch({
+        dispatch<any>({
             type: actionTypes.ERROR,
-            data: error.response.status
+            data: error
         })
     }
 
@@ -50,7 +77,7 @@ export const signUp = (formData, cb) => async dispatch=>{
  */
 
 
-export const signIn = (formData, cb) => async dispatch => {
+export const signIn = (formData: SIFormData, cb: () => void) => async (dispatch: Dispatch<Action>) => {
 
     try{
         // make an api call to /login
@@ -78,7 +105,7 @@ export const signIn = (formData, cb) => async dispatch => {
 
         dispatch({
             type: actionTypes.ERROR,
-            data: error.response.status
+            data: error
         })
 
         
@@ -86,7 +113,7 @@ export const signIn = (formData, cb) => async dispatch => {
 }
 
 
-export const signOut = (cb) => dispatch => {
+export const signOut = (cb: () => void) => (dispatch: Dispatch<Action>) => {
 
     // call to backend destroy token on backend
 
@@ -106,7 +133,7 @@ export const signOut = (cb) => dispatch => {
 
 
 
-export const checkToken = () => async dispatch => {
+export const checkToken = () => async (dispatch: Dispatch<Action>) => {
 
     if(localStorage.token){
         // api call
@@ -139,7 +166,7 @@ export const checkToken = () => async dispatch => {
 
 }
 
-export const lists = () => async dispatch => {
+export const lists = () => async (dispatch: Dispatch<Action>) => {
 
     try{
         // make an api call to /login
@@ -150,7 +177,7 @@ export const lists = () => async dispatch => {
 
         dispatch({
             type: actionTypes.AUTH_USER,
-            // data: response.data.token,
+            data: response.data.token,
             // listID: response.data.listID
         })
 

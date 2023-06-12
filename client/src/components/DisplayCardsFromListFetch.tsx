@@ -7,14 +7,28 @@ import './DisplayCardsFromListFetch.css'
 
 import { FaTrash } from 'react-icons/fa'
 
-const DisplayCardsFromListFetch = ({ listID, list }) => {
+type DisplayCardsFromListFetchProps = {
+    listID: number | string | undefined
+    list: string | undefined
+}
 
-    const [cards, setCards] = useState([])
-    const [total, setTotal] = useState()
+type CardsProp = {
+    id: number,
+    cardName: string,
+    addedPrice: number,
+    quantity: number,
+    currentPrice: number,
+    listID: number
+}
+
+const DisplayCardsFromListFetch = ({ listID, list }: DisplayCardsFromListFetchProps) => {
+
+    const [cards, setCards] = useState<CardsProp[]>([])
+    const [total, setTotal] = useState<number | string | undefined>()
     const [imgPreview, setImgPreview] = useState("")
     const [scryID, setScryID] = useState("")
 
-    const fetchText = async (text) => {
+    const fetchText = async (text: string) => {
         let url = `https://api.scryfall.com/cards/named?fuzzy=${text}`
     
         let results = await fetch(url);
@@ -45,17 +59,19 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
 
             setCards(data.data)
 
-            setTotal(formatter.format(data.data.reduce(
-                (accumulator, currentValue) => accumulator + (currentValue.currentPrice*currentValue.quantity),
+            const numTot = data.data.reduce(
+                (accumulator: number, currentValue: CardsProp) => accumulator + (currentValue.currentPrice*currentValue.quantity),
                 0,
-            )))
+            )
+
+            setTotal(formatter.format(numTot))
 
         } catch (error) {
             console.log(error)
         }
     }
 
-    const deleteCard = async(id) => {
+    const deleteCard = async(id: number): Promise<void> => {
         try {
             // const deleteCard = await axios.delete(`/card/${id}`)
             await axios.delete(`/card/${id}`)
@@ -81,11 +97,11 @@ const DisplayCardsFromListFetch = ({ listID, list }) => {
 
     }, [listID])
 
-    const handleOver = (e) => {
+    const handleOver = (e: React.MouseEvent<HTMLAnchorElement>): void => {
 
         // console.log(e.target.text)
 
-        fetchText(e.target.text)
+        fetchText(e.currentTarget.text)
 
         // console.log(imgPreview)
         // console.log(scryID)
