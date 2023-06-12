@@ -29,7 +29,7 @@ const App = () => {
     }
   }
 
-  const updatePrice = async(id, currentPrice) => {
+  const updatePrice = async(id: string | number, currentPrice: number) => {
     // e.preventDefault();
     try {
 

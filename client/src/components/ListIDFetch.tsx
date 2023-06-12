@@ -3,23 +3,31 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import DisplayCardsFromListFetch from './DisplayCardsFromListFetch'
 
-const ListIDFetch = ({list}) => {
+type ListIDFetchProp = {
+    list: string | undefined
+}
 
-    let { id } = useParams();
+type IdProp = {
+    id: number
+}
+
+const ListIDFetch = ({ list }: ListIDFetchProp) => {
+
+    let { id } = useParams<{id?: string}>();
     // console.log("param id", id)
 
-    const [dataIDs, setDataIDs] = useState([])
+    const [dataIDs, setDataIDs] = useState<number[]>([])
 
     const viewListFetch = async() => {
 
         try {
-            const data = await axios.post(`/getListID`, {
+            const data = await axios.post<{id: number}[]>(`/getListID`, {
                 list
             })
     
             // console.log("list fetch data: ", data.data.map(element => element.id))
 
-            setDataIDs(data.data.map(element => element.id))
+            setDataIDs(data.data.map((element) => element.id))
             
         } catch (error) {
             console.log(error)
@@ -31,6 +39,11 @@ const ListIDFetch = ({list}) => {
         viewListFetch();
 
     }, [])
+
+    if (!id) {
+        return <h1>THIS LIST DOES NOT EXIST</h1>
+    }
+
     return (
         <>
             {

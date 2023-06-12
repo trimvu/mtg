@@ -19,10 +19,24 @@ import Card from './components/Card';
 import List from './components/List';
 import SearchResults from './components/SearchResults';
 import DisplayLists from './components/DisplayLists';
+import type {} from 'redux-thunk/extend-redux';
+
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-let store = createStore(reducer, {},  
+let store = createStore(reducer, {
+    auth: '',
+    userID: '',
+    username: '',
+    error: '',
+    email: '',
+    listID: '',
+  },  
   composeEnhancers(applyMiddleware(reduxThunk)));
 
   store.dispatch(checkToken())
@@ -34,7 +48,7 @@ let store = createStore(reducer, {},
 //   </React.StrictMode>
 // );
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
 
   <Provider store={store}>

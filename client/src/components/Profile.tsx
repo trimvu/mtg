@@ -13,12 +13,19 @@ import './Profile.css'
 import { FaTrash } from 'react-icons/fa'
 import EditPassword from './EditPassword'
 
+type UserInfoProps = {
+  id: number,
+  email: string,
+  username: string,
+  password: string,
+}
+
 const Profile = () => {
 
-  const [username, setUsername] = useState()
-  const [userID, setUserID] = useState()
+  const [username, setUsername] = useState('')
+  const [userID, setUserID] = useState<number | undefined>()
   // const [allLists, setAllLists] = useState([])
-  const [userInfo, setUserInfo] = useState()
+  const [userInfo, setUserInfo] = useState<UserInfoProps>({} as UserInfoProps)
 
   const displayUserProfile = async() => {
     try {
@@ -85,7 +92,7 @@ const Profile = () => {
   //   }
   // }
 
-  const deleteUser = async(id) => {
+  const deleteUser = async(id: number | undefined) => {
     try {
         // deleteAllListsFromUser(id)
         // const deleteUser = await axios.delete(`/deleteUser/${id}`)
@@ -93,7 +100,7 @@ const Profile = () => {
         
         // setAllLists(allLists.filter(list => list.id !== id))
         alert('User was deleted!')
-        window.location = '/'
+        window.location.assign('/')
     } catch (error) {
         console.log(error)
     }
@@ -103,7 +110,7 @@ const Profile = () => {
 
     confirmAlert({
       title: 'Are you sure you want to delete your account? You cannot recover afterwards.',
-      Message: 'Are you sure you want to delete your account? You cannot recover afterwards.',
+      message: 'Are you sure you want to delete your account? You cannot recover afterwards.',
       buttons: [
         {
           label: 'Yes',

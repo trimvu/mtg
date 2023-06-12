@@ -5,13 +5,28 @@ import Card from 'react-bootstrap/Card';
 
 import './SearchResults.css'
 
+type CardFacesProp = {
+    image_uris: {
+        normal: string | undefined
+    }
+}
+
+type FutureArrayObjectsProps = {
+    name: string,
+    image_uris?: {
+        normal: string | undefined
+    },
+    id: string,
+    card_faces: CardFacesProp[]
+}
+
 const SearchResults = () => {
 
-    let { search } = useParams();
+    let { search } = useParams<{ search: string }>();
 
     // const navigate = useNavigate();
 
-    const [searchResult, setSearchResult] = useState([])
+    const [searchResult, setSearchResult] = useState<FutureArrayObjectsProps[]>([])
 
     const fetchInput = async () => {
 
@@ -35,6 +50,7 @@ const SearchResults = () => {
         for (let i = 0; i < data.data.length; i++) {
             // console.log(data.data[i].image_uris.normal)
             setSearchResult(data.data)
+            console.log(data.data)
         }
 
     }

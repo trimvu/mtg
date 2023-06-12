@@ -22,7 +22,7 @@ const Random = () => {
         window.location.reload()
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>): void => {
 
         e.preventDefault();
         
@@ -32,7 +32,7 @@ const Random = () => {
 
     return (
         <>
-            <button type='button' onClick={handleSubmit}><FaRandom className='random-icon' size={20} /></button>
+            <button type='button' onClick={handleSubmit} data-testid="random-button"><FaRandom className='random-icon' size={20} /></button>
         </>
     )
 }

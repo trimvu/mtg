@@ -10,7 +10,7 @@ const Search = () => {
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
     
         navigate(`/search-result/${searchInput}`)

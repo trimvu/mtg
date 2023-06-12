@@ -10,7 +10,7 @@ const CreateList = () => {
 
     const navigate = useNavigate()
 
-    const [userID, setUserID] = useState()
+    const [userID, setUserID] = useState<number | undefined>()
     // console.log(userID)
 
     const displayUserID = async() => {
@@ -44,7 +44,7 @@ const CreateList = () => {
         }
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
         createList();
         // navigate(`/list-info/${listID}/${listname}`)

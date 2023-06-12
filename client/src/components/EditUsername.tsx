@@ -5,7 +5,17 @@ import Modal from 'react-bootstrap/Modal';
 
 import { FaEdit } from 'react-icons/fa'
 
-const EditUsername = ({ userInfo }) => {
+type UserInfoProps = {
+    id: number | string
+    email: string
+    username: string
+}
+
+type UserInfoObjectProps = {
+    userInfo: UserInfoProps
+}
+
+const EditUsername = ({ userInfo }: UserInfoObjectProps) => {
 
     // console.log("the userinfo is: ", userInfo)
 
@@ -15,7 +25,7 @@ const EditUsername = ({ userInfo }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const editUsername = async(e) => {
+    const editUsername = async(e: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         e.preventDefault();
         try {
 
